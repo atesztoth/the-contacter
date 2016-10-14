@@ -1,8 +1,11 @@
 # The Contacter
 ----
 ## Description / Leírás:
+
+
 This repository has been created for the course of 'Alkalmazások fejlesztése' at ELTE University. Here I keep the files of my project organised, and updated.
-----
+
+
 Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött létre. Az itt található fileok mindig a legfrissebb állást tükrözik.
 
 ## Névjegyzék kezelése
