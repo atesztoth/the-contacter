@@ -1,39 +1,40 @@
 {
-  "name": "The Contacter",
-  "version": "3.0.0",
+  "name": "adonis-app",
+  "version": "3.1.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node\" server.js",
-    "start": "node server.js"
+    "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node \" server.js",
+    "start": "node --harmony_proxies server.js",
+    "lint": "standard"
   },
-  "author": "Attila Tóth",
+  "author": "",
   "license": "MIT",
-  "description": "The Contacter - Contact manager app for ELTE af course",
+  "description": "",
   "private": true,
   "dependencies": {
-    "adonis-ace": "^3.0.1",
-    "adonis-auth": "^1.0.0",
-    "adonis-commands": "^2.1.0",
-    "adonis-fold": "^3.0.2",
-    "adonis-framework": "^3.0.1",
-    "adonis-lucid": "^3.0.3",
-    "adonis-middleware": "^1.0.7",
-    "adonis-validation-provider": "^3.0.3",
-    "bootstrap": "^3.3.7",
+    "adonis-ace": "^3.0.4",
+    "adonis-auth": "^1.0.4",
+    "adonis-commands": "^2.1.2",
+    "adonis-fold": "^3.0.3",
+    "adonis-framework": "^3.0.4",
+    "adonis-lucid": "^3.0.10",
+    "adonis-middleware": "^1.0.8",
     "express-admin": "^1.2.8",
     "jquery": "^3.1.1",
-    "sqlite3": "^3.1.4",
+    "standard": "^8.4.0",
     "youch": "^1.0.1"
+  },
+  "standard": {
+    "global": [
+      "use",
+      "make"
+    ]
   },
   "autoload": {
     "App": "./app"
   },
   "devDependencies": {
-    "nodemon": "^1.9.1"
-  },
-  "standard": {
-    "globals": [
-      "use"
-    ]
+    "nodemon": "^1.11.0",
+    "standard": "^8.5.0"
   }
 }
