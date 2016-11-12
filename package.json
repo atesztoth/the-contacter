@@ -21,6 +21,7 @@
     "adonis-middleware": "^1.0.8",
     "express-admin": "^1.2.8",
     "jquery": "^3.1.1",
+    "nunjucks-append": "0.0.3",
     "standard": "^8.4.0",
     "youch": "^1.0.1"
   },
