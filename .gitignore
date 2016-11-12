@@ -1,6 +1,9 @@
 # Node modules
 node_modules
 
+# dependecies installed with bower
+bower_components
+
 # Ignoring everything inside storage directory
 storage/*
 
@@ -26,4 +29,4 @@ lib-cov
 .DS_Store
 
 # phpstorm
-.idea/
+/.idea/

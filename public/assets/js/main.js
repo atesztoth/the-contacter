@@ -1,7 +1,13 @@
-/**
- * Created by Attila on 2016-11-12.
- */
+requirejs.config({
+    baseUrl: 'bower',
+    paths: {
+        jquery: 'jquery/dist/jquery' // .min
+    }
+});
 
-window.$ = window.jQuery = require('jquery'); // A proper way of loading jquery!
-
-console.log($(body).text());
+requirejs(['jquery'], function( $ ) {
+    // Main entry point. If you need to use for example jquery right now for somethings,
+    // do it like:
+    // require(['jquery'], function()....
+    console.log( $ ) // OK
+});

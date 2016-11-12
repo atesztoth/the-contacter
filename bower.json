@@ -1,0 +1,30 @@
+{
+  "name": "the-contacter",
+  "description": "A small webapp for managing your contacts blazing fast.",
+  "main": "index.js",
+  "authors": [
+    "Attila Tóth <atesztoth@inf.elte.hu>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "contact",
+    "manage",
+    "contacts",
+    "telbook",
+    "email"
+  ],
+  "homepage": "https://github.com/atesztoth/the-contacter",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "requirejs": "^2.3.2"
+  }
+}
