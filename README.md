@@ -17,6 +17,7 @@ Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött
 - Vendégként a főoldalon szeretnék egy üdvözlő üzenetet látni
 - Vendégként szeretnék egy üdvözlő oldalt látni
 - Vendégként szeretnék regisztrációs lehetőséget
+
 #### Felhasználóként (regisztrált felhasználó)
 - Felhasználóként szeretném a saját kontaktjaimat látni a főoldalon
 - Felhasználóként szeretném a kedvenc kontaktjaimat elsőként látni
