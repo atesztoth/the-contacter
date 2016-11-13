@@ -22,6 +22,7 @@
     "bower": "^1.8.0",
     "express-admin": "^1.2.8",
     "nunjucks-append": "0.0.3",
+    "sqlite3": "^3.1.8",
     "standard": "^8.4.0",
     "youch": "^1.0.1"
   },

@@ -17,4 +17,4 @@
 
 const Route = use('Route')
 
-Route.on('/').render('home/home')
+Route.on('/').render('home/home') // Renders the view directly
