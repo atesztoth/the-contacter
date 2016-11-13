@@ -29,4 +29,7 @@ lib-cov
 .DS_Store
 
 # phpstorm
-/.idea/
+.idea/*
+
+# Npm debug files
+npm-debug*
