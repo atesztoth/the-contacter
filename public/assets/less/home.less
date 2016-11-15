@@ -1,0 +1,25 @@
+@import 'common-less';
+
+#home {
+  .welcome-wrapper {
+    position: relative;
+
+    .inside-wrapper {
+      //position: absolute;
+      //top: 50%;
+      //.transform(translateY(-50%));
+
+      .welcome-text {
+        .font-shrikhand();
+        font-size: 55px;
+        text-align: left;
+        // margin-top: 10%;
+
+        .min-xs({ font-size: 80px; });
+      }
+      .welcome-description {
+        text-align: justify;
+      }
+    }
+  }
+}

@@ -25,6 +25,18 @@
 
 @font-face {
   font-family: 'Dosis';
+  src: url('../fonts/dosis/Dosis-Regular.eot');
+  src: url('../fonts/dosis/Dosis-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/dosis/Dosis-Regular.woff2') format('woff2'),
+  url('../fonts/dosis/Dosis-Regular.woff') format('woff'),
+  url('../fonts/dosis/Dosis-Regular.ttf') format('truetype'),
+  url('../fonts/dosis/Dosis-Regular.svg#Dosis-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dosis';
   src: url('../fonts/dosis/Dosis-Medium.eot');
   src: url('../fonts/dosis/Dosis-Medium.eot?#iefix') format('embedded-opentype'),
   url('../fonts/dosis/Dosis-Medium.woff2') format('woff2'),
@@ -32,18 +44,6 @@
   url('../fonts/dosis/Dosis-Medium.ttf') format('truetype'),
   url('../fonts/dosis/Dosis-Medium.svg#Dosis-Medium') format('svg');
   font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Dosis';
-  src: url('../fonts/dosis/Dosis-Bold.eot');
-  src: url('../fonts/dosis/Dosis-Bold.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/dosis/Dosis-Bold.woff2') format('woff2'),
-  url('../fonts/dosis/Dosis-Bold.woff') format('woff'),
-  url('../fonts/dosis/Dosis-Bold.ttf') format('truetype'),
-  url('../fonts/dosis/Dosis-Bold.svg#Dosis-Bold') format('svg');
-  font-weight: bold;
   font-style: normal;
 }
 
@@ -61,6 +61,18 @@
 
 @font-face {
   font-family: 'Dosis';
+  src: url('../fonts/dosis/Dosis-Bold.eot');
+  src: url('../fonts/dosis/Dosis-Bold.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/dosis/Dosis-Bold.woff2') format('woff2'),
+  url('../fonts/dosis/Dosis-Bold.woff') format('woff'),
+  url('../fonts/dosis/Dosis-Bold.ttf') format('truetype'),
+  url('../fonts/dosis/Dosis-Bold.svg#Dosis-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dosis';
   src: url('../fonts/dosis/Dosis-ExtraBold.eot');
   src: url('../fonts/dosis/Dosis-ExtraBold.eot?#iefix') format('embedded-opentype'),
   url('../fonts/dosis/Dosis-ExtraBold.woff2') format('woff2'),
@@ -68,18 +80,6 @@
   url('../fonts/dosis/Dosis-ExtraBold.ttf') format('truetype'),
   url('../fonts/dosis/Dosis-ExtraBold.svg#Dosis-ExtraBold') format('svg');
   font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Dosis';
-  src: url('../fonts/dosis/Dosis-Regular.eot');
-  src: url('../fonts/dosis/Dosis-Regular.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/dosis/Dosis-Regular.woff2') format('woff2'),
-  url('../fonts/dosis/Dosis-Regular.woff') format('woff'),
-  url('../fonts/dosis/Dosis-Regular.ttf') format('truetype'),
-  url('../fonts/dosis/Dosis-Regular.svg#Dosis-Regular') format('svg');
-  font-weight: normal;
   font-style: normal;
 }
 
@@ -133,52 +133,59 @@
   url('../fonts/shrikhand/shrikhand-regular.woff') format('woff'),
   url('../fonts/shrikhand/shrikhand-regular.ttf') format('truetype'),
   url('../fonts/shrikhand/shrikhand-regular.svg#Shrikhand-Regular') format('svg');
-  font-weight: normal;
+  font-weight: bold;
   font-style: italic;
 }
 
 .font-shrikhand() {
   font-family: 'Shrikhand', 'Arial', sans-serif;
-  font-weight: normal;
+  font-weight: bold;
   font-style: italic;
 }
 
-.thinFont() {
-  font-family: 'Nexa', 'Arial Narrow', sans-serif;
-  font-weight: 100;
+.font-secondary() {
+  font-family: 'Noto Serif', 'Arial', sans-serif;
+  font-weight: normal;
 }
 
-.lighterFont() {
-  font-family: 'Nexa', 'Arial Narrow', sans-serif;
+.extraLightFont() {
+  font-family: 'Dosis', 'Arial Narrow', sans-serif;
   font-weight: 200;
+  font-style: normal;
 }
 
 .lightFont() {
-  font-family: 'Nexa', 'Arial Narrow', sans-serif;
+  font-family: 'Dosis', 'Arial Narrow', sans-serif;
   font-weight: 300;
+  font-style: normal;
 }
 
-.regularFont () {
-  font-family: 'Nexa', 'Arial', sans-serif;
-  font-weight: 400;
+.regularFont() {
+  font-family: 'Dosis', 'Arial', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.meidumFont() {
+  font-family: 'Dosis', 'Arial', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.semiBoldFont() {
+  font-family: 'Dosis', 'Arial', sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .boldFont() {
-  font-family: 'Nexa', 'Arial Black', sans-serif;
-  font-weight: 600;
+  font-family: 'Dosis', 'Arial', sans-serif;
+  font-weight: bold;
+  font-style: normal;
 }
 
-.bolderFont() {
-  font-family: 'Nexa', 'Arial Black', sans-serif;
-  font-weight: 700;
-}
-
-.heavyFont() {
-  font-family: 'Nexa', 'Arial Black', sans-serif;
+.extraBoldFont() {
+  font-family: 'Dosis', 'Arial Black', sans-serif;
   font-weight: 800;
-}
-
-.blackFont() {
-  font-family: 'Nexa', 'Arial Black', sans-serif;
-  font-weight: 900;
+  font-style: normal;
 }
