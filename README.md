@@ -102,37 +102,37 @@ A publikus oldalakon kívül ezeket is eléri:
  
  A tervektől való esetleges eltérések megeshetnek, ugyan is előfordulhat, hogy szerkesztés közben derül ki, hogy minimális változtatással sokkal esztétikusabb eredményt érhetek el.
  
- # Főoldal
+ ### Főoldal
  
- # Regisztrációs oldal
+ ### Regisztrációs oldal
  
- # Bejelentkezés oldal
+ ### Bejelentkezés oldal
  
- # Kontaktok listázása oldal
+ ### Kontaktok listázása oldal
  
- # Kontakt hozzáadása / szerkesztése oldal
+ ### Kontakt hozzáadása / szerkesztése oldal
  
- # Kontaktcsoportok megjelenítése oldal
+ ### Kontaktcsoportok megjelenítése oldal
  
  ## Designtervek
  
- # Főoldal
+ ### Főoldal
  
- # Regisztrációs oldal
+ ### Regisztrációs oldal
  
- # Bejelentkezés oldal
+ ### Bejelentkezés oldal
  
- # Kontaktok listázása oldal
+ ### Kontaktok listázása oldal
  
- # Kontakt hozzáadása / szerkesztése oldal
+ ### Kontakt hozzáadása / szerkesztése oldal
  
- # Kontaktcsoportok megjelenítése oldal
+ ### Kontaktcsoportok megjelenítése oldal
  
  ## Osztálymodell
  
- # Adatmodell
+ ### Adatmodell
  
- # Adatbázisterv
+ ### Adatbázisterv
  
  ## Szekvenciadiagram
  
@@ -142,7 +142,7 @@ A publikus oldalakon kívül ezeket is eléri:
  
  ## Fejlesztői környezet
  
- # PHPStorm, local IDE
+ ### PHPStorm, local IDE
  
  ## Könyvtárstruktúra
  
