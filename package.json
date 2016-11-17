@@ -21,6 +21,7 @@
     "adonis-middleware": "^1.0.8",
     "bower": "^1.8.0",
     "express-admin": "^1.2.8",
+    "less": "^2.7.1",
     "nunjucks-append": "0.0.3",
     "sqlite3": "^3.1.8",
     "standard": "^8.4.0",
