@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var gulpLess = require('gulp-less');
+var bower = require('gulp-bower');
 
 gulp.task('cmp-less', function () {
     return gulp.src([
@@ -10,6 +11,10 @@ gulp.task('cmp-less', function () {
         '!public/assets/less/**/mixins.less'])
         .pipe(gulpLess()) // Converts Less to CSS with gulp-less
         .pipe(gulp.dest('public/assets/css'))
+});
+
+gulp.task('bower-install', function () {
+    return bower();
 });
 
 gulp.task('asset-watch', function () {
