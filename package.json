@@ -1,13 +1,14 @@
 {
-  "name": "adonis-app",
+  "name": "The Contacter",
   "version": "3.1.0",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node \" server.js",
     "start": "node --harmony_proxies server.js",
-    "lint": "standard"
+    "lint": "standard",
+    "postinstall": "gulp cmp-less"
   },
-  "author": "",
+  "author": "Attila Tóth",
   "license": "MIT",
   "description": "",
   "private": true,
@@ -21,6 +22,8 @@
     "adonis-middleware": "^1.0.8",
     "bower": "^1.8.0",
     "express-admin": "^1.2.8",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
     "less": "^2.7.1",
     "nunjucks-append": "0.0.3",
     "sqlite3": "^3.1.8",
