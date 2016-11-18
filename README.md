@@ -1,19 +1,23 @@
-# The Contacter
+# Dokumentáció
+## The Contacter
+Készítette: Tóth Attila
 
-## Description / Leírás:
-
-
+### Description / Leírás:
 This repository has been created for the course of 'Alkalmazások fejlesztése' at ELTE University. Here I keep the files of my project organised, and updated.
-
 
 Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött létre. Az itt található fileok mindig a legfrissebb állást tükrözik.
 
-## Névjegyzék kezelése
 
+### 1. Követelményanalízis
 
-### Funkcionális követelmények
+### 1.1 Célkitűzés, információ az alkalmazásról
+Az alkalmazás célja az, hogy egy élvezhetően használható, kellemes felületet biztosítson kontaktjaink
+kezeléséhez, azok rendezetten tartásához, konktakcsoportok meghatározásához.
+Az alkalmazás használatához registráció szükséges.
 
-#### Vendégként (nem regisztrált felhasználó)
+####  Funkcionális követelmények
+
+##### Vendégként (nem regisztrált felhasználó)
 - Vendégként a főoldalon szeretnék egy üdvözlő üzenetet látni
 - Vendégként szeretnék egy üdvözlő oldalt látni
 - Vendégként szeretnék regisztrációs lehetőséget
@@ -27,21 +31,21 @@ Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött
 - Felhasználóként akár e-mail címet is szeretnék társítani egy-egy kontakthoz.
 - Felhasználóként szeretnék egy saját kontaktot.
 
-### Nem funkcionális követelmények
-- Felhasználóbarát, ergonomikus elrendezés és kinézet.
-- Gyors működés.
-- Biztonságos működés: jelszavak hashének tárolása.
-- Egyszerű, következetes felhasználói felület, egyszerű használat.
-- Kellemes kinzet.
+#### Nem funkcionális követelmények
+- **Felhasználóbarát**, ergonomikus elrendezés és kinézet.
+- **Gyors** működés.
+- **Biztonságos** működés: jelszavak hashének tárolása.
+- **Egyszerű**, következetes felhasználói felület, egyszerű használat.
+- **Kellemes** kinzet.
 
- ### Szakterületi fogalomjegyzék
+### 1.2 Szakterületi fogalomjegyzék
  
- - Kontakt: Egy ismerős adatait számon tartó objektum, hozzá tartozik kép is telefonszámok is.
- - Kontakt csoport: kontakt objektumokból álló csoport.
+ - **Kontakt**: Egy ismerős adatait reprezentáló objektum, hozzá tartozik kép is telefonszámok is.
+ - **Kontakt csoport**: kontakt objektumokból álló csoport.
 
-### Használatiest-modell, funkcionális követelmények
+### 1.3 Használatiest-modell, funkcionális követelmények
 
-## Vendég
+#### Vendég
 
 Csak a főoldalt, és a regisztrációt éri el.
 
@@ -49,7 +53,7 @@ Csak a főoldalt, és a regisztrációt éri el.
 - Bejelentkezés
 - Regisztráció
 
-## Bejelentkezett felhasználó:
+#### Bejelentkezett felhasználó:
 
 A publikus oldalakon kívül ezeket is eléri:
 
@@ -60,6 +64,8 @@ A publikus oldalakon kívül ezeket is eléri:
 - Kontakthoz megjegyzés csatolása
 - Becenév megadása
 - Lakhely beírása
+
+![](docs/images/use-case.png)
 
 ## Egy eset bemutatása: kontakt hozzáadása
 - A felhasználó az oldalra érkezve bejelentkezik, vagy regisztrál.
