@@ -1,5 +1,5 @@
 {
-  "name": "The Contacter",
+  "name": "adonis-app",
   "version": "3.1.0",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,9 @@
     "lint": "standard",
     "postinstall": "gulp cmp-less"
   },
-  "author": "Attila Tóth",
+  "author": "",
   "license": "MIT",
-  "description": "",
+  "description": "This application has been created as a project for ELTE\'s applicaiton development course.",
   "private": true,
   "dependencies": {
     "adonis-ace": "^3.0.4",
