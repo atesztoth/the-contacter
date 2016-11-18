@@ -7,8 +7,7 @@ var bower = require('gulp-bower');
 gulp.task('cmp-less', function () {
     return gulp.src([
         'public/assets/less/**/*.less',
-        '!public/assets/less/**/variables.less',
-        '!public/assets/less/**/mixins.less'])
+        '!public/assets/less/**/nocmp_*.less'])
         .pipe(gulpLess()) // Converts Less to CSS with gulp-less
         .pipe(gulp.dest('public/assets/css'))
 });
