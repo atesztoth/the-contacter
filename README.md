@@ -67,31 +67,34 @@ A publikus oldalakon kívül ezeket is eléri:
 
 ![](docs/images/use-case.png)
 
-## Egy eset bemutatása: kontakt hozzáadása
-- A felhasználó az oldalra érkezve bejelentkezik, vagy regisztrál.
-- A regisztráció után elérhetővé vált menük közül kiíválsztja a kontakt hozzáadását.
-- Ez után az elé kerülő formot kitölti, melynek kötelező eleme csak egy név.
-- Opcionálisan megad telefonszámot, képet, lakhelyet...
-- Mentés gombra kattintva véglegesíti az adatokat.
+##### Egy eset bemutatása: kontakt hozzáadása
+1. A felhasználó az oldalra érkezve bejelentkezik, vagy regisztrál.
+2. A regisztráció után elérhetővé vált menük közül kiíválsztja a kontakt hozzáadását.
+3. Ez után az elé kerülő formot kitölti, melynek kötelező eleme csak egy név.
+4. (Opcionálisan megad telefonszámot, képet, lakhelyet...)
+5. Mentés gombra kattintva véglegesíti az adatokat.
 
- #### Tervezés
+![](docs/images/add-contact.png)
+
+### 2. Tervezés
  
- ### Architektúra terv
+#### 2.1 Architektúra terv
  
- ## Komplemensdiagram
+##### 2.1.1 Komplemensdiagram
+
  
- ## Oldaltérkép
+## Oldaltérkép
  
- # Publikus:
- - Főoldal
- - Bejelentkezési oldal
- - Regisztrációs oldal
+# Publikus:
+- Főoldal
+- Bejelentkezési oldal
+- Regisztrációs oldal
  
- # Bejelentkezett felhasználó:
- - Főoldal
- - Új kontakt hozzáadása
- - Meglévő kontakt szerkesztése
- - Kontaktcsoportok megjelenítése
+# Bejelentkezett felhasználó:
+- Főoldal
+- Új kontakt hozzáadása
+- Meglévő kontakt szerkesztése
+- Kontaktcsoportok megjelenítése
 
 ## Végpontok
 
