@@ -82,21 +82,27 @@ A publikus oldalakon kívül ezeket is eléri:
  
 ##### 2.1.1 Komplemensdiagram
 
+![](docs/images/complements.png)
  
-## Oldaltérkép
+##### 2.1.2 Oldaltérkép
  
-# Publikus:
+###### Publikus:
 - Főoldal
 - Bejelentkezési oldal
 - Regisztrációs oldal
  
-# Bejelentkezett felhasználó:
+###### Bejelentkezett felhasználó:
 - Főoldal
 - Új kontakt hozzáadása
-- Meglévő kontakt szerkesztése
-- Kontaktcsoportok megjelenítése
+- Listaoldal
+    - kontaktcsoportok megjelenítése
+    - kontaktok megjelenítése
+- Szerkesztő oldalak
+    - kontakt szerkesztése
+    - kontaktcsoport szerkesztése
+- Képfeltöltő oldal
 
-## Végpontok
+##### 2.1.3 Végpontok
 
 - GET / : Főoldal
 - GET,POST /login : Bejelentkezés
@@ -107,37 +113,27 @@ A publikus oldalakon kívül ezeket is eléri:
 - GET,POST /contact/new-contact : Kontakt létrehozása
 - GET,POST /contact/contact-url-nev : Kontakt szerkesztése
 
- ## Felhasználói-felület modell
+##### 2.1.4 Felhasználói-felület modell
  
  A tervektől való esetleges eltérések megeshetnek, ugyan is előfordulhat, hogy szerkesztés közben derül ki, hogy minimális változtatással sokkal esztétikusabb eredményt érhetek el.
  
- ### Főoldal
+###### Főoldal
+![](docs/pageplans/Homepage.jpg)
  
- ### Regisztrációs oldal
+###### Regisztrációs oldal
+
+![](docs/pageplans/regisztracio.jpg)
  
- ### Bejelentkezés oldal
+###### Bejelentkezés oldal
+![](docs/pageplans/bejelentkezes.jpg)
  
- ### Kontaktok listázása oldal
+###### Kontaktok listázása oldal
+![](docs/pageplans/listpage.jpg)
  
- ### Kontakt hozzáadása / szerkesztése oldal
+###### Kontakt hozzáadása / szerkesztése oldal
+![](docs/pageplans/newcontact.jpg)
  
- ### Kontaktcsoportok megjelenítése oldal
- 
- ## Designtervek
- 
- ### Főoldal
- 
- ### Regisztrációs oldal
- 
- ### Bejelentkezés oldal
- 
- ### Kontaktok listázása oldal
- 
- ### Kontakt hozzáadása / szerkesztése oldal
- 
- ### Kontaktcsoportok megjelenítése oldal
- 
- ## Osztálymodell
+##### 2.1.5 Osztálymodell
  
  ### Adatmodell
  
