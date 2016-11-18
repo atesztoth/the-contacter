@@ -7,22 +7,21 @@ This repository has been created for the course of 'Alkalmazások fejlesztése' 
 
 Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött létre. Az itt található fileok mindig a legfrissebb állást tükrözik.
 
-
 ### 1. Követelményanalízis
 
-### 1.1 Célkitűzés, információ az alkalmazásról
+#### 1.1 Célkitűzés, információ az alkalmazásról
 Az alkalmazás célja az, hogy egy élvezhetően használható, kellemes felületet biztosítson kontaktjaink
 kezeléséhez, azok rendezetten tartásához, konktakcsoportok meghatározásához.
 Az alkalmazás használatához registráció szükséges.
 
-####  Funkcionális követelmények
+#####  Funkcionális követelmények
 
-##### Vendégként (nem regisztrált felhasználó)
+**Vendégként** (*nem regisztrált felhasználó*)
 - Vendégként a főoldalon szeretnék egy üdvözlő üzenetet látni
 - Vendégként szeretnék egy üdvözlő oldalt látni
 - Vendégként szeretnék regisztrációs lehetőséget
 
-#### Felhasználóként (regisztrált felhasználó)
+**Felhasználóként** (*regisztrált felhasználó*)
 - Felhasználóként szeretném a saját kontaktjaimat látni a főoldalon.
 - Felhasználóként szeretném a kedvenc kontaktjaimat elsőként látni.
 - Felhasználóként szeretnék új kontaktot létrehozi.
@@ -31,21 +30,21 @@ Az alkalmazás használatához registráció szükséges.
 - Felhasználóként akár e-mail címet is szeretnék társítani egy-egy kontakthoz.
 - Felhasználóként szeretnék egy saját kontaktot.
 
-#### Nem funkcionális követelmények
+##### Nem funkcionális követelmények
 - **Felhasználóbarát**, ergonomikus elrendezés és kinézet.
 - **Gyors** működés.
 - **Biztonságos** működés: jelszavak hashének tárolása.
 - **Egyszerű**, következetes felhasználói felület, egyszerű használat.
 - **Kellemes** kinzet.
 
-### 1.2 Szakterületi fogalomjegyzék
+#### 1.2 Szakterületi fogalomjegyzék
  
  - **Kontakt**: Egy ismerős adatait reprezentáló objektum, hozzá tartozik kép is telefonszámok is.
  - **Kontakt csoport**: kontakt objektumokból álló csoport.
 
-### 1.3 Használatiest-modell, funkcionális követelmények
+#### 1.3 Használatiest-modell, funkcionális követelmények
 
-#### Vendég
+**Vendég**
 
 Csak a főoldalt, és a regisztrációt éri el.
 
@@ -53,7 +52,7 @@ Csak a főoldalt, és a regisztrációt éri el.
 - Bejelentkezés
 - Regisztráció
 
-#### Bejelentkezett felhasználó:
+**Bejelentkezett felhasználó**
 
 A publikus oldalakon kívül ezeket is eléri:
 
@@ -67,7 +66,7 @@ A publikus oldalakon kívül ezeket is eléri:
 
 ![](docs/images/use-case.png)
 
-##### Egy eset bemutatása: kontakt hozzáadása
+Egy eset bemutatása: ***kontakt hozzáadása***
 1. A felhasználó az oldalra érkezve bejelentkezik, vagy regisztrál.
 2. A regisztráció után elérhetővé vált menük közül kiíválsztja a kontakt hozzáadását.
 3. Ez után az elé kerülő formot kitölti, melynek kötelező eleme csak egy név.
@@ -113,7 +112,9 @@ A publikus oldalakon kívül ezeket is eléri:
 - GET,POST /contact/new-contact : Kontakt létrehozása
 - GET,POST /contact/contact-url-nev : Kontakt szerkesztése
 
-##### 2.1.4 Felhasználói-felület modell
+##### 2.2 Felhasználói-felület modell
+ 
+###### 2.2.1 Oldalválzlatok:
  
  A tervektől való esetleges eltérések megeshetnek, ugyan is előfordulhat, hogy szerkesztés közben derül ki, hogy minimális változtatással sokkal esztétikusabb eredményt érhetek el.
  
@@ -133,11 +134,12 @@ A publikus oldalakon kívül ezeket is eléri:
 ###### Kontakt hozzáadása / szerkesztése oldal
 ![](docs/pageplans/newcontact.jpg)
  
-##### 2.1.5 Osztálymodell
+##### 2.2.2 Osztálymodell
  
- ### Adatmodell
- 
- ### Adatbázisterv
+###### Adatmodell
+
+
+###### Adatbázisterv
  
  ## Szekvenciadiagram
  
