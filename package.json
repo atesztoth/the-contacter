@@ -10,7 +10,7 @@
   },
   "author": "",
   "license": "MIT",
-  "description": "This application has been created as a project for ELTE\'s applicaiton development course.",
+  "description": "This application has been created as a project for applicaiton development course of ELTE University.",
   "private": true,
   "dependencies": {
     "adonis-ace": "^3.0.4",
