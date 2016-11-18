@@ -1,0 +1,31 @@
+[cgroup|id: int|
+name]
+
+[contact|id: int|
+name
+nickname]
+
+[email|id: int|
+type
+mail]
+
+[tnum|id: int|
+type
+number]
+
+[image|id: int|
+url]
+
+[address|id: int|
+type
+address]
+
+[tnum|id: int|
+type
+number]
+
+[cgroup]+->0..*[contact]
+[contact]+->0..*[email]
+[contact]+->0..*[tnum]
+[contact]+->0..*[image]
+[contact]+->0..*[address]

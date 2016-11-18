@@ -137,7 +137,7 @@ Egy eset bemutatása: ***kontakt hozzáadása***
 ##### 2.2.2 Osztálymodell
  
 ###### Adatmodell
-
+![](docs/images/data-model.png)
 
 ###### Adatbázisterv
  
