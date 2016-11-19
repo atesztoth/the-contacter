@@ -23,7 +23,7 @@ gulp.task('default', function () {
 gulp.task('sass:cmp', function () {
     return gulp.src([
         'public/assets/sass/**/*.scss',
-        '!public/assets/less/**/_*.scss']) // We are not compiling files starting with an underscore! I threat them internal files.
+        '!public/assets/less/**/_*.scss']) // We are not compiling files starting with an underscore! I treat them internal files.
         .pipe(sass({
             style: 'compressed'
         }).on('error', sass.logError))
@@ -31,7 +31,7 @@ gulp.task('sass:cmp', function () {
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['cmp-sass']);
+    gulp.watch('./sass/**/*.scss', ['sass:cmp']);
 });
 
 gulp.task('compress:css', ['sass:cmp'], function () {

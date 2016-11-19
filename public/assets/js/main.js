@@ -7,6 +7,12 @@ requirejs.config({
         whatInput: 'what-input/what-input.min',
         foundation: 'foundation-sites/dist/foundation.min',
         jquery: 'jquery/dist/jquery' // .min
+    },
+    shim: {
+        'foundation': { // gotcha!
+            deps: ['jquery'],
+            exports: 'foundation'
+        }
     }
 });
 

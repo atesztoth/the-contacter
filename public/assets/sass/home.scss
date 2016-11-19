@@ -5,9 +5,17 @@
     position: relative;
 
     .inside-wrapper {
-      // position: absolute;
-      // top: 50%;
-      // .transform(translateY(-50%));
+      .nav-menu {
+        ul.custom-menu {
+          > li {
+            padding-right: 30px;
+
+            &:not(:last-of-type) {
+              padding-right: 0;
+            }
+          }
+        }
+      }
 
       .welcome-text {
         @include font-shrikhand();
