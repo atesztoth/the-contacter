@@ -1,0 +1,14 @@
+@import '_common-internal';
+
+body {
+  @include regularFont();
+  background-color: $bodyBg;
+
+  #content {
+    font: inherit;
+    .content-wrapper {
+      min-height: 100vh;
+      background-color: $contentBg;
+    }
+  }
+}

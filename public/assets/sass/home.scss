@@ -1,4 +1,4 @@
-@import '_common-internal';
+@import '_common';
 
 #home {
   .welcome-wrapper {
@@ -17,6 +17,7 @@
 
         // .min-xs({ font-size: 80px; });
       }
+
       .welcome-description {
         text-align: justify;
       }
