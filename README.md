@@ -79,7 +79,7 @@ Egy eset bemutatása: ***kontakt hozzáadása***
  
 #### 2.1 Architektúra terv
  
-##### 2.1.1 Komplemensdiagram
+##### 2.1.1 Komponensdiagram
 
 ![](docs/images/complements.png)
  
@@ -119,69 +119,97 @@ Egy eset bemutatása: ***kontakt hozzáadása***
  A tervektől való esetleges eltérések megeshetnek, ugyan is előfordulhat, hogy szerkesztés közben derül ki, hogy minimális változtatással sokkal esztétikusabb eredményt érhetek el.
  
 ###### Főoldal
-![](docs/pageplans/Homepage.jpg)
+![Főoldal](docs/pageplans/Homepage.jpg)
  
 ###### Regisztrációs oldal
 
-![](docs/pageplans/regisztracio.jpg)
+![Regisztráció](docs/pageplans/regisztracio.jpg)
  
 ###### Bejelentkezés oldal
-![](docs/pageplans/bejelentkezes.jpg)
+![Bejelentkezés](docs/pageplans/bejelentkezes.jpg)
  
 ###### Kontaktok listázása oldal
-![](docs/pageplans/listpage.jpg)
+![Listaoldal](docs/pageplans/listpage.jpg)
  
 ###### Kontakt hozzáadása / szerkesztése oldal
-![](docs/pageplans/newcontact.jpg)
+![Új kapcsolat](docs/pageplans/newcontact.jpg)
  
 ##### 2.2.2 Osztálymodell
  
 ###### Adatmodell
-![](docs/images/data-model.png)
+![Osztálymodell](docs/images/data-model.png)
 
 ###### Adatbázisterv
+![Adatbázisterv](docs/images/db-plan.png)
  
- ## Szekvenciadiagram
+###### Szekvenciadiagram
+
+Vegyünk például egy regisztrációt, majd egy új kontakt felvételét, szerkesztését, törlését.
  
- Vegyünk például egy regisztrációt, majd egy új kontakt felvételét, szerkesztését, törlését.
+![Szekvencia diagram](docs/images/sequence-diagram.png)
+
  
- ### Implementáció
+### 3. Implementáció
+
+###### 3.1.1 Fejlesztőkörnyezet
  
- ## Fejlesztői környezet
+**PHPStorm**, local IDE
+
+VCS: **git**
+
+**Github** kódtárban tárolom a projekt kódjait.
+
+
  
- ### PHPStorm, local IDE
- 
- ## Könyvtárstruktúra
+###### 3.1.2 Könyvtárstruktúra
  
  * **the-contacter**
   * **config**
-    * _waterline.js_
   * **controllers**
-    * _index.js_
-    * _recipes.js_
-    * _login.js_
+    * _HomeController.js_
+    * _ContactController.js_
   * **models**
-    * _comment.js_
-    * _recipes.js_
-    * _recipes.test.js_
-    * _user.js_
-    * _user.test.js_
-  * **views**: handlebars (hbs) fájlok
+    * _Cgroup.js_
+    * _Contact.js_
+    * _Image.js_
+    * _Address.js_
+    * _Tnum.js_
+  * **views**:
     * **login**
-      * _index.hbs_
-      * _signup.hbs_
-    * **recipes**
-      * _edit.hbs_
-      * _list.hbs_
-      * _new.hbs_
-      * _show.hbs_
-    * _index.hbs_
-    * _layout.hbs_
+      * _loginpage.njk_
+    * **home**
+      * _home.njk_
+    * **contact**
+      * _add.njk_
+      * _list.njk_
+    * _master.njk_
   * _bower.json_
   * _package.json_
   * _server.js_
-  
-  ###	Irodalomjegyzék:
+
+### 4.	Felhasználói dokumentáció
+
+**Futtatáshoz szükséges operációs rendszer:** Tetszőleges operációs rendszer
+
+**A futtatáshoz szükséges hardver:** Operációs rendszerek szerint megadva
+
+**Egyéb követelmények:** Internet böngésző telepítése, JavaScript ajánlott
+
+**Program használata:**
+
+1. Böngészőben nyissuk meg a főoldalt
+2. Jelentkezzünk be az oldalra a "Bejelentkezés" gomb segítségével
+3. Bejelentkezés/Regisztráció után a Lista oldalra jutunk
+4. Oldalt a "+" gombra kattintva tudunk új kontaktot az adatbázishoz adni
+5. Töltsük ki az űrlapot
+6. Hibás adatok esetén az űrlap jelezni fogja a hibát
+7. "Mentés" gombra kattintva mentsük el az adatokat
+8. Lista oldalon: "Szerkesztés" gombra kattintva a szerkesztés oldalra jutunk
+9. Lista oldalon: Megtekint gombra kattintva a Megtekint oldalra jutunk
+10. Megtekintés oldalon található a szerkesztés gomb
+11. Szerkesztés oldal: megegyezik az új kontakt oldallal, viszont előre ki van töltve.
+
+### 5.	Irodalomjegyzék:
 
 http://webprogramozas.inf.elte.hu/alkfejl.php
 

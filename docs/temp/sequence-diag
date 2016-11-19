@@ -1,0 +1,13 @@
+title Regisztráció, új kontakt felvétele, módosítás, törlés
+
+Főoldal->Bejelentkezés: GET(login)
+Főoldal->Regisztráció: GET(registration)
+Bejelentkezés->Regisztráció: GET(registration)
+Regisztráció-->Bejelentkezés: POST(registration)
+Bejelentkezés->Listaoldal: GET(listpage)
+Listaoldal->Új kontakt: GET(add-contact)
+Listaoldal->Kontakt szerkesztése: GET(show-contact)
+Új kontakt->Kontakt szerkesztése: POST(save-contact)
+Kontakt szerkesztése-->Kontakt törlése: POST(remove-contact)
+Kontakt szerkesztése-->Listaoldal: POST(save-contact)
+Kontakt törlése-->Listaoldal: POST(remove-contact)
