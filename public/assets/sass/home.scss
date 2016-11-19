@@ -1,21 +1,21 @@
-@import 'nocmp_common';
+@import '_common-internal';
 
 #home {
   .welcome-wrapper {
     position: relative;
 
     .inside-wrapper {
-      //position: absolute;
-      //top: 50%;
-      //.transform(translateY(-50%));
+      // position: absolute;
+      // top: 50%;
+      // .transform(translateY(-50%));
 
       .welcome-text {
-        .font-shrikhand();
+        @include font-shrikhand();
         font-size: 55px;
         text-align: left;
         // margin-top: 10%;
 
-        .min-xs({ font-size: 80px; });
+        // .min-xs({ font-size: 80px; });
       }
       .welcome-description {
         text-align: justify;

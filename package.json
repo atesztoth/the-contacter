@@ -6,7 +6,7 @@
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x \"node \" server.js",
     "start": "node --harmony_proxies server.js",
     "lint": "standard",
-    "postinstall": "gulp cmp-less bower-install"
+    "postinstall": "gulp deploy"
   },
   "author": "",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "express-admin": "^1.2.8",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",
-    "gulp-less": "^3.3.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglifycss": "^1.0.6",
     "less": "^2.7.1",
     "sqlite3": "^3.1.8",
     "standard": "^8.4.0",

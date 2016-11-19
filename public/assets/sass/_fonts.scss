@@ -137,54 +137,54 @@
   font-style: italic;
 }
 
-.font-shrikhand() {
+@mixin font-shrikhand() {
   font-family: 'Shrikhand', 'Arial', sans-serif;
   font-weight: bold;
   font-style: italic;
 }
 
-.font-secondary() {
+@mixin font-secondary() {
   font-family: 'Noto Serif', 'Arial', sans-serif;
   font-weight: normal;
 }
 
-.extraLightFont() {
+@mixin extraLightFont() {
   font-family: 'Dosis', 'Arial Narrow', sans-serif;
   font-weight: 200;
   font-style: normal;
 }
 
-.lightFont() {
+@mixin lightFont() {
   font-family: 'Dosis', 'Arial Narrow', sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
-.regularFont() {
+@mixin regularFont() {
   font-family: 'Dosis', 'Arial', sans-serif;
   font-weight: normal;
   font-style: normal;
 }
 
-.meidumFont() {
+@mixin meidumFont() {
   font-family: 'Dosis', 'Arial', sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
-.semiBoldFont() {
+@mixin semiBoldFont() {
   font-family: 'Dosis', 'Arial', sans-serif;
   font-weight: 600;
   font-style: normal;
 }
 
-.boldFont() {
+@mixin boldFont() {
   font-family: 'Dosis', 'Arial', sans-serif;
   font-weight: bold;
   font-style: normal;
 }
 
-.extraBoldFont() {
+@mixin extraBoldFont() {
   font-family: 'Dosis', 'Arial Black', sans-serif;
   font-weight: 800;
   font-style: normal;
