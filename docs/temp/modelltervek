@@ -2,8 +2,11 @@
 name]
 
 [contact|id: int|
-name
-nickname]
+url_string
+firstname
+surname
+nickname
+comment]
 
 [email|id: int|
 type
