@@ -165,7 +165,8 @@ VCS: **git**
  
  * **the-contacter**
   * **config**
-  * **controllers**
+  * **controllers**,
+  
     * _HomeController.js_
     * _ContactController.js_
   * **models**

@@ -18,7 +18,7 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.welcome') // Renders the view directly
-Route.get('/registration', 'AuthController.registration').as('regpage')
+Route.route('/registration', ['GET', 'POST', 'HEAD'], 'HomeController.registration').as('regpage')
 
 // Route.get('/profile', 'UserController.profile').as('profile').middleware('auth')
 // Route.get('/logout', 'UserController.doLogout').as('do_logout').middleware('auth')

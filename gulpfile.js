@@ -31,7 +31,7 @@ gulp.task('sass:cmp', function () {
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['sass:cmp']);
+    gulp.watch('public/assets/sass/**/*.scss', ['sass:cmp']);
 });
 
 gulp.task('compress:css', ['sass:cmp'], function () {
@@ -47,7 +47,7 @@ gulp.task('bower:install', function () {
     return bower();
 });
 
-gulp.task('say:finished', ['compress:css'], function () {
+gulp.task('say:finished', ['compress:css', 'bower:install'], function () {
     console.log('Installing finished, ready to roll!');
 });
 
@@ -56,5 +56,6 @@ gulp.task('say:start', function () {
 });
 
 gulp.task('deploy', ['say:start'], function () {
+    console.log('Deployment started...');
     gulp.start('say:finished');
 });

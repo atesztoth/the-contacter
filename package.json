@@ -20,6 +20,7 @@
     "adonis-framework": "^3.0.4",
     "adonis-lucid": "^3.0.10",
     "adonis-middleware": "^1.0.8",
+    "adonis-validation-provider": "^3.0.4",
     "bower": "^1.8.0",
     "express-admin": "^1.2.8",
     "gulp": "^3.9.1",
