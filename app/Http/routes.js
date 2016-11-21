@@ -19,7 +19,11 @@ const Route = use('Route')
 
 Route.get('/', 'HomeController.welcome') // Renders the view directly
 Route.route('/registration', ['GET', 'POST', 'HEAD'], 'HomeController.registration').as('regpage')
+Route.get('/login', 'HomeController.login').as('login')
+Route.post('/loginaction', 'HomeController.loginAction').as('loginAction')
+Route.get('/logout', 'HomeController.logout').as('logout')
 
-// Route.get('/profile', 'UserController.profile').as('profile').middleware('auth')
-// Route.get('/logout', 'UserController.doLogout').as('do_logout').middleware('auth')
-// Route.post('/profile/edit', 'UserController.doProfileEdit').as('do_profile_edit').middleware('auth')
+// Protected routes:
+Route.get('/contacts', 'ContactController.list').as('contactList').middleware('auth')
+Route.get('/contact/new-contact', 'ContactController.add').as('addContact').middleware('auth')
+Route.post('/contact/new-contact', 'ContactController.addAction').as('addContactAction').middleware('auth')

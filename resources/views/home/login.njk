@@ -1,0 +1,32 @@
+{% extends 'master.njk' %}
+
+{% block pagetitle %}The Contacter - Registration{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/registration.css">
+{% endblock %}
+
+{% block content %}
+    <div id="registration">
+        {% if old('error') %}
+            <div data-alert class="alert-box success radius">
+                {{ old('error') }}
+                <a href="#" class="close">&times;</a>
+            </div>
+        {% endif %}
+
+
+        <form action="{{ 'loginAction' | route }}" method="post">
+            {{ csrfField }}
+            <label>E-mail címed
+                <input type="text" placeholder="email@cím.hu" name="email">
+            </label>
+
+            <label>Jelszó
+                <input type="password" placeholder="Jelszó" name="password">
+            </label>
+
+            <input type="submit" class="button" value="Bejelentkezés">
+        </form>
+    </div>
+{% endblock %}

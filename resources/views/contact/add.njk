@@ -1,0 +1,50 @@
+{% extends 'master.njk' %}
+
+{% block pagetitle %}The Contacter - Listpage{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/list.css">
+{% endblock %}
+
+{% block content %}
+
+    {% if old('errors') | length > 0 %}
+        <ul>
+            {% for error in old('errors') %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div id="contact-add">
+        <form action="{{ 'addContactAction' | route }}" method="POST">
+            {{ csrfField }}
+            <label>Keresztnév
+                <input type="text" placeholder="Ferenc" name="firstname" value="{{ old('firstname') }}">
+            </label>
+
+            <label>Vezetéknév
+                <input type="text" placeholder="Példa" name="surname" value="{{ old('surname') }}">
+            </label>
+
+            <label>E-mail cím
+                <input type="email" placeholder="email@cim.hu" name="email" value="{{ old('email') }}">
+            </label>
+
+            <label>
+                Megjegyzés csatolása
+                <textarea placeholder="Megjegyzés..." name="comment">{{ old('comment') }}</textarea>
+            </label>
+
+            {% if cgroups | length > 0 %}
+                <select multiple>
+                    {% for cg in cgroups %}
+                        <option value="{{ cg.id }}">{{ cg.name }}</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+
+            <input type="submit" value="Mentés">
+        </form>
+    </div>
+{% endblock %}

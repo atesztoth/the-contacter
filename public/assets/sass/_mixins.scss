@@ -7,3 +7,8 @@
   font-size: $size;
   font-size: calculateRem($size);
 }
+
+@mixin square-size($size) {
+  width: $size;
+  height: $size;
+}

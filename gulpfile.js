@@ -30,8 +30,18 @@ gulp.task('sass:cmp', function () {
         .pipe(gulp.dest('public/assets/css'));
 });
 
+gulp.task('sass:cmp:all', function () {
+    return gulp.src([
+        'public/assets/sass/**/*.scss'])
+        .pipe(sass({
+            style: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest('public/assets/css'));
+});
+
+
 gulp.task('sass:watch', function () {
-    gulp.watch('public/assets/sass/**/*.scss', ['sass:cmp']);
+    gulp.watch('public/assets/sass/**/*.scss', ['sass:cmp:all']);
 });
 
 gulp.task('compress:css', ['sass:cmp'], function () {

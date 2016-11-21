@@ -3,26 +3,36 @@
 {% block pagetitle %}The Contacter - Registration{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/assets/css/registration.css">
+  <link rel="stylesheet" href="/assets/css/registration.css">
 {% endblock %}
 
 {% block content %}
-    <div id="registration">
-        <form action="{{ 'regpage' | route }}" method="post">
-            {{ csrfField }}
-            <label>E-mail címed
-                <input type="text" placeholder="@email cím" name="email">
-            </label>
+  <div id="registration">
+    {% if errors|length >0 %}
+      <div class="errors">
+        <ul class="error-list">
+          {% for error in errors %}
+            <li>{{ error.field ~ ': ' ~ error.message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
 
-            <label>Jelszó
-                <input type="password" placeholder="Jelszó" name="password">
-            </label>
+    <form action="{{ 'regpage' | route }}" method="post">
+      {{ csrfField }}
+      <label>E-mail címed
+        <input type="text" placeholder="email@cím.hu" name="email">
+      </label>
 
-            <label>Jelszó megerősítése
-                <input type="password" placeholder="Jelszó mégegyszer" name="password2">
-            </label>
+      <label>Jelszó
+        <input type="password" placeholder="Jelszó" name="password">
+      </label>
 
-            <input type="submit" class="button" value="Regisztrálok!">
-        </form>
-    </div>
+      <label>Jelszó megerősítése
+        <input type="password" placeholder="Jelszó mégegyszer" name="password2">
+      </label>
+
+      <input type="submit" class="button" value="Regisztrálok!">
+    </form>
+  </div>
 {% endblock %}

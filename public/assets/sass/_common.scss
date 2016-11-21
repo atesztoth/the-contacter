@@ -7,6 +7,7 @@ body {
   #content {
     font: inherit;
     .content-wrapper {
+      padding-top: 10vh;
       min-height: 100vh;
       background-color: $contentBg;
     }

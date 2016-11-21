@@ -15,11 +15,17 @@
                 </div>
                 <div class="nav-menu menu-centered">
                     <ul class="menu custom-menu">
-                        <li><a href="{{ 'regpage' | route }}">Belépés</a></li>
+                        <li><a href="{{ 'login' | route }}">Belépés</a></li>
                         <li><a href="{{ 'regpage' | route }}">Regisztráció</a></li>
                     </ul>
                 </div>
                 <div class="welcome-description">
+                    {% if old('regresponse') and old('regresponse') === 'success' %}
+                        <div data-alert class="alert-box success radius">
+                            Sikeres regisztráció! Mostmár beléphet.
+                            <a href="#" class="close">&times;</a>
+                        </div>
+                    {% endif %}
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit auctor
                         hendrerit. Lorem
                         ipsum dolor sit amet, consectetur adipiscing elit. Ut et elit a ligula accumsan

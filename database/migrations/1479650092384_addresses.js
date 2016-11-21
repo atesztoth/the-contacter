@@ -14,7 +14,7 @@ class AddressesTableSchema extends Schema {
   }
 
   down () {
-    this.drop('addresses')
+    this.dropIfExists('addresses')
   }
 
 }

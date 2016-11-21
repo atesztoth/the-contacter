@@ -9,7 +9,7 @@ class User extends Lucid {
             // username: 'required|unique:users',
             email: 'required|email|unique:users',
             password: 'required|min:6',
-            // password2: 'requred|min:6'
+            password2: 'required|min:6|same:password'
         }
     }
 

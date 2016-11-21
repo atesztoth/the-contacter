@@ -107,10 +107,10 @@ Egy eset bemutatása: ***kontakt hozzáadása***
 - GET,POST /login : Bejelentkezés
 - GET,POST /registration : Regisztráció
 - GET /contacts : Kontaktok oldal
-- GET /contact/contact-url-nev : Kontakt megtekintése
+- GET /contact/:id : Kontakt megtekintése
 - GET /contacts/groups : Kontaktcsoportok megjelenítése
 - GET,POST /contact/new-contact : Kontakt létrehozása
-- GET,POST /contact/contact-url-nev : Kontakt szerkesztése
+- GET,POST /contact/:id : Kontakt szerkesztése
 
 ##### 2.2 Felhasználói-felület modell
  

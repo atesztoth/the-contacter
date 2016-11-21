@@ -1,0 +1,39 @@
+{% extends 'master.njk' %}
+
+{% block pagetitle %}The Contacter - Listpage{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/list.css">
+{% endblock %}
+
+{% block content %}
+    {% if old('successMsg') %}
+        <div data-alert class="alert-box success radius">
+            {{ old('successMsg') }}
+            <a href="#" class="close">&times;</a>
+        </div>
+    {% endif %}
+    <div id="contact-list">
+        <div id="plus">
+            <a href="{{ 'addContact' | route }}">
+                <span class="plus-sign">+</span>
+            </a>
+        </div>
+        <div class="content-wrapper">
+
+            {% if contacts | length > 0 %}
+                <ul>
+                    {% for contact in contacts %}
+                        <li>
+                            <a href="#">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>
+                    Még nincsenek hozzáadott kontaktjai.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
