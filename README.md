@@ -110,7 +110,7 @@ Egy eset bemutatása: ***kontakt hozzáadása***
 - GET /contact/:id : Kontakt megtekintése
 - GET /contacts/groups : Kontaktcsoportok megjelenítése
 - GET,POST /contact/new-contact : Kontakt létrehozása
-- GET,POST /contact/:id : Kontakt szerkesztése
+- GET,POST /contact/edit/:id : Kontakt szerkesztése
 
 ##### 2.2 Felhasználói-felület modell
  

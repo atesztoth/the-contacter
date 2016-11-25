@@ -25,7 +25,7 @@
                 <ul>
                     {% for contact in contacts %}
                         <li>
-                            <a href="#">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
+                            <a href="{{ 'showContact' | route({id: contact.id}) }}">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
                         </li>
                     {% endfor %}
                 </ul>

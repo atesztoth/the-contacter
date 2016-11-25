@@ -14,23 +14,23 @@ class Contact extends Lucid {
 
     cgroups() {
         // Since a contact can be a part of many cgroups, and vica versa, this is an n:m realitonship.
-        this.belongsToMany('App/Model/Cgroup')
+        return this.belongsToMany('App/Model/Cgroup')
     }
 
     addresses() {
-        this.hasMany('App/Model/Address')
+        return this.hasMany('App/Model/Address')
     }
 
     emails() {
-        this.hasMany('App/Model/Email')
+        return this.hasMany('App/Model/Email')
     }
 
     images() {
-        this.hasMany('App/Model/Image')
+        return this.hasMany('App/Model/Image')
     }
 
     tnums() {
-        this.hasMany('App/Model/Tnum')
+        return this.hasMany('App/Model/Tnum')
     }
 }
 

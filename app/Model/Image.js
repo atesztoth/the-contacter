@@ -4,7 +4,7 @@ const Lucid = use('Lucid')
 
 class Image extends Lucid {
     contacts() {
-        this.belongsTo('App/Model/Contact')
+       return this.belongsTo('App/Model/Contact')
     }
 }
 

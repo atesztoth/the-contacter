@@ -40,6 +40,6 @@ Http.handleError = function *(error, request, response) {
 Http.onStart = function () {
     // Lets listen for database events!
     const Database = use('Database')
-    Database.on('query', console.log)
-    Database.on('sql', console.log)
+    // Database.on('query', console.log)
+    // Database.on('sql', console.log)
 }

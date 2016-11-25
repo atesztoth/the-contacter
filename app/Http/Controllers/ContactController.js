@@ -29,6 +29,24 @@ class ContactController {
         })
     }
 
+    *show(request, response) {
+        const contactID = request.param('id')
+        const contact = yield Contact.find(contactID)
+
+        if (contact) {
+            // If we could find the contact we were looking for, then we can load all
+            // the realted models:
+            yield contact.related('cgroups', 'emails').load() // Lazy Eager load
+
+            yield response.sendView('contact/show', {
+                    contact: contact.toJSON()
+                }
+            )
+        } else {
+            response.notFound('A keresett kontakt nem található.')
+        }
+    }
+
     * addAction(request, response) {
         const contactData = request.all()
         const myMessages = {
@@ -56,15 +74,15 @@ class ContactController {
         contact.firstname = contactData.firstname
         contact.surname = contactData.surname
 
+        yield contact.save()
+
         // Here comes the optional part
         if (contactData.email !== null) {
             const email = new Email();
             email.type = contactData.emailType
             email.email = contactData.email
-            // contact.emails = {email} // TODO: RÁJÖNNI, HOGY HOGY KELL
+            yield contact.emails().save(email)
         }
-
-        yield contact.save()
         yield request.with({successMsg: 'Sikeres mentés!'}).flash()
         yield response.route('contactList')
     }
