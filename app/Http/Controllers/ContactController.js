@@ -9,6 +9,7 @@ const Address = use('App/Model/Address')
 const Image = use('App/Model/Image')
 const Helpers = use('Helpers')
 const fs = use('fs')
+const path = require('path');
 
 class ContactController {
     * list(request, response) {
@@ -46,9 +47,8 @@ class ContactController {
             console.log(contact.toJSON())
 
             yield response.sendView('contact/show', {
-                    contact: contact.toJSON()
-                }
-            )
+                contact: contact.toJSON()
+            })
         } else {
             response.notFound('A keresett kontakt nem található.')
         }
@@ -92,8 +92,8 @@ class ContactController {
                 allowedExtensions: ['jpg', 'JPG', 'png']
             })
 
-            console.log(profileImage)
-            console.log(request.all())
+            //console.log(profileImage)
+            //console.log(request.all())
 
             const fileName = `${new Date().getTime()}.${profileImage.extension()}`
 
@@ -107,6 +107,7 @@ class ContactController {
                 return
             }
 
+            // TODO: Daaaamn, hiba lesz, a ha a storageban tárolom, mert az adonis nem fogja engedni elérni kívülről! ROUTE
             yield profileImage.move(Helpers.storagePath('p_images'), fileName)
 
             if (!profileImage.moved()) {
@@ -114,7 +115,7 @@ class ContactController {
                 return
             }
 
-            image.url = Helpers.storagePath('p_images') + fileName
+            image.url = path.join(Helpers.storagePath('p_images'), fileName)
             weHaveAnImage = true
         }
 
