@@ -15,24 +15,22 @@ const Database = use('Database')
 
 class ContactController {
 
-    *
-    list(request, response) {
+    * list(request, response) {
         // We need to fetch all the exsisting contacts now
         // Fetch 'em directly into the list
         // About the categories: at this point, we don't care,
         // there is a dedicated view for that.
 
         const contacts = yield Contact.query().orderBy('created_at', 'desc').orderBy('firstname', 'asc').orderBy('surname', 'asc').fetch()
-            // console.log('-----------------')
-            // console.log(contacts.toJSON())
+        // console.log('-----------------')
+        // console.log(contacts.toJSON())
 
         yield response.sendView('contact/list', {
             contacts: contacts.toJSON()
         })
     }
 
-    *
-    add(request, response) {
+    * add(request, response) {
         const CGroups = yield CGroup.all()
 
         yield response.sendView('contact/add', {
@@ -40,8 +38,7 @@ class ContactController {
         })
     }
 
-    *
-    show(request, response) {
+    * show(request, response) {
         const contactID = request.param('id')
         const theContact = yield Contact.find(contactID)
 
@@ -61,8 +58,7 @@ class ContactController {
         })
     }
 
-    *
-    saveAction(request, response) {
+    * saveAction(request, response) {
         const contactData = request.all()
         const myMessages = {
             'firstname.required': 'A keresztnév megadása kötelező!',
@@ -138,15 +134,13 @@ class ContactController {
         let weHaveAnImage = false;
         const image = new Image()
 
-        console.log(contactData)
-
-        if (typeof contactData.profileImage !== 'undefined') {
+        if (request.file('profileImage').toJSON().size !== 0) {
             const profileImage = request.file('profileImage', {
                 maxSize: '5mb',
                 allowedExtensions: ['jpg', 'JPG', 'png']
             })
 
-            console.log(profileImage)            
+            console.log(profileImage)
 
             const fileName = `${new Date().getTime()}.${profileImage.extension()}`
 
@@ -182,9 +176,11 @@ class ContactController {
                 }
             }
 
+            console.log(Helpers.storagePath('p_images'), fileName)
             yield profileImage.move(Helpers.storagePath('p_images'), fileName)
 
             if (!profileImage.moved()) {
+                console.log('The image could not be moved!!')
                 response.badRequest({
                     error: profileImage.errors()
                 })
@@ -293,8 +289,7 @@ class ContactController {
         yield response.route('contactList')
     }
 
-    *
-    edit(request, response) {
+    * edit(request, response) {
         let dataForView = {}
         const contactID = request.param('id')
         const theContact = yield Contact.find(contactID)
@@ -325,8 +320,7 @@ class ContactController {
         yield response.sendView('contact/add', dataForView)
     }
 
-    *
-    serveImage(request, response) {
+    * serveImage(request, response) {
         const imageName = request.param('imageName')
 
         response.download(Helpers.storagePath(path.join('p_images', imageName)))
