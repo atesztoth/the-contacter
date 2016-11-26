@@ -14,6 +14,55 @@
         </div>
     {% endif %}
     <div id="contact-show">
-        {{ contact.toString() }}
+        <div class="image-wrapper">
+            {% if contact.images | length > 0 %}
+                <img src="{{ contact.image }}" alt="{{ contact.firstname ~ ' ' ~contact.surname ~ ' profilképe' }}">
+            {% endif %}
+            <div class="name-wrapper">
+                <span class="person-name">{{ contact.firstname ~ ' ' ~contact.surname }}</span>
+            </div>
+        </div>
+        <div class="contact-wrapper">
+
+            {% if contact.image %}
+                <img src="{{ contact.image.url }}">
+            {% endif %}
+
+            {% if contact.emails | length > 0 %}
+                <div class="pack">
+                    <div class="title">Email címek</div>
+                    <div class="content">
+                        <ul class="email-list">
+                            {% for email in contact.emails %}
+                                <li>{{ email.type }} {{ email.email }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if contact.comment %}
+                <div class="pack">
+                    <div class="title">Megjegyzésem</div>
+                    <div class="content">
+                        <p>{{ contect.comment }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if contact.cgroups | length > 0 %}
+                <div class="pack">
+                    <div class="title">Csoportok, melyekbe a kontakt tartozik</div>
+                    <div class="content">
+                        <ul class="simple-list">
+                            {% for cgroup in contant.cgroups %}
+                                <li>{{ cgroup }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
     </div>
 {% endblock %}

@@ -9,7 +9,7 @@
 {% block content %}
 
     {% if old('errors') | length > 0 %}
-        <ul>
+        <ul class="error-list">
             {% for error in old('errors') %}
                 <li>{{ error.message }}</li>
             {% endfor %}
@@ -17,7 +17,8 @@
     {% endif %}
 
     <div id="contact-add">
-        <form action="{{ 'addContactAction' | route }}" method="POST">
+        <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
+        <form action="{{ 'addContactAction' | route }}" method="POST" enctype="multipart/form-data">
             {{ csrfField }}
             <label>Keresztnév
                 <input type="text" placeholder="Ferenc" name="firstname" value="{{ old('firstname') }}">
@@ -27,8 +28,37 @@
                 <input type="text" placeholder="Példa" name="surname" value="{{ old('surname') }}">
             </label>
 
-            <label>E-mail cím
-                <input type="email" placeholder="email@cim.hu" name="email" value="{{ old('email') }}">
+            <label>Becenév
+                <input type="text" placeholder="TheContacter" name="nickname" value="{{ old('nickname') }}">
+            </label>
+
+            <fieldset>
+                <legend>Kép feltöltése</legend>
+                <label for="profileImageUpload" class="button">Profilkép feltöltése</label>
+                <input type="file" id="profileImageUpload" class="show-for-sr" name="profileImage">
+            </fieldset>
+
+
+            <!--div class="input-group">
+                <span class="input-group-label">Személyes</span>
+                <input class="input-group-field" type="email">
+            </div-->
+
+            <label>
+                Email címek (típus-email#típus-email...)
+                <textarea placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
+                          name="emails">{{ old('emails') }}</textarea>
+            </label>
+
+            <label>
+                Telefonszámok (típus-telefonszám#típus-telefonszám...)
+                <textarea placeholder="magán-+36301234567#céges-06201234567" name="tnums">{{ old('tnums') }}</textarea>
+            </label>
+
+            <label>
+                Helyek (típus-cím#típus-cím...)
+                <textarea placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
+                          name="addresses">{{ old('addresses') }}</textarea>
             </label>
 
             <label>

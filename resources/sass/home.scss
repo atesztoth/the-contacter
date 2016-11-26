@@ -1,0 +1,34 @@
+@import 'common';
+
+#home {
+  .welcome-wrapper {
+    position: relative;
+
+    .inside-wrapper {
+      .nav-menu {
+        ul.custom-menu {
+          > li {
+            padding-right: 30px;
+
+            &:not(:last-of-type) {
+              padding-right: 0;
+            }
+          }
+        }
+      }
+
+      .welcome-text {
+        @include font-shrikhand();
+        font-size: 55px;
+        text-align: left;
+        // margin-top: 10%;
+
+        // .min-xs({ font-size: 80px; });
+      }
+
+      .welcome-description {
+        text-align: justify;
+      }
+    }
+  }
+}

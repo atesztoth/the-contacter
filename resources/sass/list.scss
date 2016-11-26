@@ -1,0 +1,31 @@
+@import 'common';
+
+$plusWrapperSize: 30px;
+
+#contact-list {
+  position: relative;
+  #plus {
+    position: absolute;
+    top: 0px;
+    left: -$plusWrapperSize;
+    font-size: 30px;
+    @include square-size($plusWrapperSize);
+
+    .plus-sign {
+      width: 100%;
+
+    }
+  }
+  .content-wrapper {
+
+    ul {
+      list-style: none;
+      li {
+        cursor: pointer;
+        &:nth-child(2n) {
+          background-color: $grey;
+        }
+      }
+    }
+  }
+}

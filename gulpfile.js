@@ -22,17 +22,22 @@ gulp.task('default', function () {
 
 gulp.task('sass:cmp', function () {
     return gulp.src([
-        'public/assets/sass/**/*.scss',
-        '!public/assets/less/**/_*.scss']) // We are not compiling files starting with an underscore! I treat them internal files.
-        .pipe(sass({
-            style: 'compressed'
-        }).on('error', sass.logError))
+        'resources/sass/**/*.scss'
+    ]).pipe(sass({
+        style: 'expanded'
+    }).on('error', sass.logError))
+        .pipe(gulp.dest('public/assets/css'));
+});
+
+gulp.task('foundation:cmp:sass', function () {
+    return gulp.src('resources/bower/foundation-sites/assets/foundation.scss')
+        .pipe(sass({}))
         .pipe(gulp.dest('public/assets/css'));
 });
 
 gulp.task('sass:cmp:all', function () {
     return gulp.src([
-        'public/assets/sass/**/*.scss'])
+        'resources/sass/**/*.scss'])
         .pipe(sass({
             style: 'compressed'
         }).on('error', sass.logError))
@@ -41,10 +46,10 @@ gulp.task('sass:cmp:all', function () {
 
 
 gulp.task('sass:watch', function () {
-    gulp.watch('public/assets/sass/**/*.scss', ['sass:cmp:all']);
+    gulp.watch('resources/sass/**/*.scss', ['sass:cmp:all']);
 });
 
-gulp.task('compress:css', ['sass:cmp'], function () {
+gulp.task('compress:css', ['sass:cmp:all'], function () {
     gulp.src('public/assets/css/**/*.css')
         .pipe(uglifycss({
             "maxLineLen": 80,
@@ -57,15 +62,14 @@ gulp.task('bower:install', function () {
     return bower();
 });
 
-gulp.task('say:finished', ['compress:css', 'bower:install'], function () {
-    console.log('Installing finished, ready to roll!');
+gulp.task('full-compress:css', ['foundation:cmp:sass'], function () {
+    gulp.start('compress:css');
 });
 
-gulp.task('say:start', function () {
-    console.log('Hello! Getting the frontend ready...');
+gulp.task('deploy:process:cmp', ['bower:install'], function () {
+    gulp.start('full-compress:css');
 });
 
-gulp.task('deploy', ['say:start'], function () {
-    console.log('Deployment started...');
-    gulp.start('say:finished');
+gulp.task('deploy', function () {
+    gulp.start('deploy:process:cmp');
 });

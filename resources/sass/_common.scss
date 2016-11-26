@@ -1,0 +1,30 @@
+@import 'common-internal';
+
+body {
+  @include regularFont();
+  background-color: $bodyBg;
+  background-image: url('../../images/hill.jpg');
+  background-position: center center;
+  background-size: 100%;
+
+  #content {
+    font: inherit;
+
+    ul.error-list {
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+
+      // Only affects medium screens and larger
+      //@include breakpoint(medium) {
+      //  width: 40%;
+      //}
+    }
+
+    .content-wrapper {
+      padding-top: 10vh;
+      min-height: 100vh;
+      background-color: $contentBg;
+    }
+  }
+}

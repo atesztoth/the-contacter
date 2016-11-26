@@ -25,8 +25,8 @@ class Contact extends Lucid {
         return this.hasMany('App/Model/Email')
     }
 
-    images() {
-        return this.hasMany('App/Model/Image')
+    image() {
+        return this.hasOne('App/Model/Image')
     }
 
     tnums() {
