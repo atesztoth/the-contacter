@@ -134,7 +134,7 @@ class ContactController {
         let weHaveAnImage = false;
         const image = new Image()
 
-        if (request.file('profileImage').toJSON().size !== 0) {
+        if (request.file('profileImage').toJSON().size > 0) {
             const profileImage = request.file('profileImage', {
                 maxSize: '5mb',
                 allowedExtensions: ['jpg', 'JPG', 'png']
