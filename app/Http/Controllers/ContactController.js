@@ -8,6 +8,7 @@ const Tnum = use('App/Model/Tnum')
 const Address = use('App/Model/Address')
 const Image = use('App/Model/Image')
 const Helpers = use('Helpers')
+const fs = use('fs')
 
 class ContactController {
     * list(request, response) {
@@ -106,16 +107,14 @@ class ContactController {
                 return
             }
 
-            yield profileImage.move(Helpers.storagePath('/profile_images'), fileName)
+            yield profileImage.move(Helpers.storagePath('p_images'), fileName)
 
             if (!profileImage.moved()) {
-                // NOTE: Ahh, csomo szenvedés után most jöttem rá, hogy mivel a C meghajtómon van az app, az életben nem fogja engedni
-                // a windows az áthelyezést! argh pls
                 response.badRequest({error: profileImage.errors()})
                 return
             }
 
-            image.url = Helpers.storagePath('/profile_images/') + fileName
+            image.url = Helpers.storagePath('p_images') + fileName
             weHaveAnImage = true
         }
 
