@@ -84,7 +84,7 @@ class ContactController {
         // Init contact
         let contact = null
 
-        if (typeof contactData.editFlag !== 'undefined' && contactData.editFlag !== '0') {
+        if (typeof contactData.editFlag !== 'undefined' && contactData.editFlag > 0) {
             // Let the user edit only his own contacts.
             contact = yield Contact.find(contactData.editFlag)
 
@@ -136,7 +136,31 @@ class ContactController {
         const requestFile = request.file('profileImage').toJSON()
 
         if (requestFile.size > 0) {
-            // TODO: Check if it already has an image, and replace it with a new one!
+            // Existing image? Ok, it is only possible if it is not a new contact object,
+            // which means we are editing one, witch means the contactData.editFlag must
+            // be a number > 0.
+            if (typeof contactData.editFlag !== 'undefined' && contactData.editFlag > 0) {
+                let oldImage = contact.toJSON().image
+
+                console.log(oldImage)
+
+                // Just to make it absolutely sure:
+                if (oldImage.id > 0) {
+                    let imagePath = path.join(Helpers.storagePath('p_images'), oldImage.url)
+                    console.log(imagePath)
+                    try {
+                        fs.accessSync(imagePath, fs.F_OK)
+                        fs.unlinkSync(imagePath)
+                        yield Database.table('images').where('id', oldImage.id).delete()
+                    } catch (e) {
+                        console.log('I could not delete an old image!')
+                        response.badRequest({
+                            error: e
+                        })
+                    }
+                }
+            }
+
             const profileImage = request.file('profileImage', {
                 maxSize: '5mb',
                 allowedExtensions: ['jpg', 'JPG', 'png']
@@ -182,9 +206,9 @@ class ContactController {
             // The following function is just too fancy-ass to give any useable
             // error messages, so I went as far as using a built-in nodejs funciton,
             // that could give me some useable error messages.
-            // I got fixed the (EXDEV) error in like 3 minutes with a big googleing,
+            // I got fixed the (EXDEV) error in like 3 minutes with a bit of googleing,
             // but spent 2 hours on NOTHING because of this b*tchass function underneath.
-            // Hellyeah...
+            // Hellyeah... I've put far more time in this than I should have had.
             yield profileImage.move(Helpers.storagePath('p_images'), fileName)
 
             // Gonna do that:
@@ -202,6 +226,7 @@ class ContactController {
             // I am doing some cool routes for the images, lets just store the name of the image!
             image.url = fileName
             weHaveAnImage = true
+            // console.log(weHaveAnImage + " <-- Do we have an image?")
         }
 
         // BEFORE we store the contact we store the image. So if any validation fails on the image,
@@ -209,6 +234,8 @@ class ContactController {
         yield contact.save()
 
         if (weHaveAnImage) {
+            // console.log('--------------------> trying to save the image')
+            // console.log(image)
             yield contact.image().save(image)
         }
 
@@ -310,7 +337,7 @@ class ContactController {
             yield theContact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load() // Lazy Eager load
 
             contactForView = theContact.toJSON()
-            console.log(contactForView)
+            // console.log(contactForView)
 
             // Redirecting if he is doing some monkey business:
             if (contactForView.created_by_id !== request.currentUser.id) {
@@ -338,7 +365,7 @@ class ContactController {
     }
 
     mySerializer(object, fieldNames) {
-        // Give me an array of objects! 
+        // Give me an array of objects!
         // If you have one object, than: [{feelGood}]
         let rowArray = []
 
@@ -347,7 +374,7 @@ class ContactController {
         for (let o of object) {
             let oneRow = []
             for (let fieldName of fieldNames) {
-                if (typeof o[fieldName] !== 'undefined') {
+                if (typeof o[fieldName] !== 'undefined' && o[fieldName] !== null) {
                     oneRow.push(o[fieldName])
                 }
             }
