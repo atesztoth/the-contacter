@@ -66,7 +66,7 @@ gulp.task('bower:install', function () {
     return bower();
 });
 
-gulp.task('full-compress:css', ['sass:cmp:assets'], function () {
+gulp.task('full-compress:css', function () {
     gulp.start('compress:css');
 });
 
