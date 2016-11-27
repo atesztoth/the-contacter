@@ -1,7 +1,7 @@
 {% extends 'master.njk' %}
 {% block pagetitle %}The Contacter - {{ contact.firstname ~ ' ' ~ contact.lastname }}{% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/assets/css/show.css">
 {% endblock %}
 {% block content %}
@@ -26,13 +26,14 @@
             {% endif %}
             <div class="actionbar">
                 <ul>
-                    <li><a href="{{ 'editContact' | route({id: contact.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                    <li><a href="{{ 'editContact' | route({id: contact.id}) }}"><i class="fa fa-pencil"
+                                                                                   aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
         <div class="contact-wrapper">
             {% if contact.image %}
-                <img src="{{ 'imageServer' | route({ imageName: contact.image.url })  }}">
+                <img src="{{ 'imageServer' | route({ imageName: contact.image.url }) }}">
             {% endif %}
             {% if contact.tnums | length > 0 %}
                 <div class="pack">
@@ -40,7 +41,8 @@
                     <div class="content">
                         <ul class="email-list">
                             {% for tnum in contact.tnums %}
-                                <li><span class="type">{{ tnum.type }}</span> <span class="the-thing">{{ tnum.number }}</span></li>
+                                <li><span class="type">{{ tnum.type }}</span> <span
+                                            class="the-thing">{{ tnum.number }}</span></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -52,7 +54,8 @@
                     <div class="content">
                         <ul class="email-list">
                             {% for email in contact.emails %}
-                                <li><span class="type">{{ email.type }}</span> <span class="the-thing">{{ email.email }}</span></li>
+                                <li><span class="type">{{ email.type }}</span> <span
+                                            class="the-thing">{{ email.email }}</span></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -64,7 +67,8 @@
                     <div class="content">
                         <ul class="email-list">
                             {% for address in contact.addresses %}
-                                <li><span class="type">{{ address.type }}</span> <span class="the-thing">{{ address.address }}</span></li>
+                                <li><span class="type">{{ address.type }}</span> <span
+                                            class="the-thing">{{ address.address }}</span></li>
                             {% endfor %}
                         </ul>
                     </div>

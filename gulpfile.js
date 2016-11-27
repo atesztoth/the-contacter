@@ -1,9 +1,9 @@
 'use strict'
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var bower = require('gulp-bower');
-var uglifycss = require('gulp-uglifycss');
+let gulp = require('gulp');
+let sass = require('gulp-sass');
+let bower = require('gulp-bower');
+let uglifycss = require('gulp-uglifycss');
 
 // gulp.task('cmp-less', function () {
 //     return gulp.src([
@@ -29,14 +29,15 @@ gulp.task('sass:cmp', function () {
         .pipe(gulp.dest('public/assets/css'));
 });
 
-gulp.task('sass:cmp:assets', function () {
-    return gulp.src([
-        'resources/bower/foundation-sites/assets/foundation.scss',
-        'resources/bower/font-awesome/scss/font-awesome.scss'
-        ])
-        .pipe(sass({}))
-        .pipe(gulp.dest('public/assets/css'));
-});
+// It was a bad idea... :/
+// gulp.task('sass:cmp:assets', function () {
+//     return gulp.src([
+//         'public/bower/foundation-sites/assets/foundation.scss',
+//         'public/bower/font-awesome/scss/font-awesome.scss'
+//         ])
+//         .pipe(sass({}))
+//         .pipe(gulp.dest('public/assets/css'));
+// });
 
 gulp.task('sass:cmp:all', function () {
     return gulp.src([

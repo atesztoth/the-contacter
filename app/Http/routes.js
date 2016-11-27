@@ -37,5 +37,8 @@ Route.get('/contact/edit/:id', 'ContactController.edit').as('editContact').middl
 // Showing:
 Route.get('/contact/:id', 'ContactController.show').as('showContact').middleware('auth')
 
+// Contact groups:
+Route.get('/contact-groups', 'CgroupController.list').as('contactGroups').middleware('auth')
+
 // Misc (but important!):
 Route.get('/serveimage/:imageName', 'ContactController.serveImage').as('imageServer').middleware('auth')

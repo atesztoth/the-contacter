@@ -15,9 +15,10 @@
     {% endif %}
     <div id="contact-list">
         <div id="plus">
-            <a href="{{ 'addContact' | route }}">
+            <a href="{{ 'addContact' | route() }}">
                 <span class="plus-sign">+</span>
             </a>
+            <a href="{{ 'contactGroups' | route() }}">Contact groups</a>
         </div>
         <div class="content-wrapper">
 

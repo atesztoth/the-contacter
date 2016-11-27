@@ -1,0 +1,36 @@
+{% extends 'master.njk' %}
+
+{% block pagetitle %}The Contacter - Listpage{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/cgrouplist.css">
+{% endblock %}
+
+{% block content %}
+    {% if old('successMsg') %}
+        <div data-alert class="alert-box success radius">
+            {{ old('successMsg') }}
+            <a href="#" class="close">&times;</a>
+        </div>
+    {% endif %}
+    <div id="cgroup-list">
+
+        <h1>Meglévő csoportok</h1>
+
+        {% if cgroups and cgroups | length > 0 %}
+            <div class="table-scroll">
+                <table>
+
+                </table>
+            </div>
+        {% else %}
+
+            <div class="callout warning">
+                <h5>Nincsenek még kontakt csoportok.</h5>
+                <p>Nincsenek még kontakt csoportok a rendszerhez adva.</p>
+                <a href="#">A fenti form használatával adhat hozzá újat.</a>
+            </div>
+
+        {% endif %}
+    </div>
+{% endblock %}

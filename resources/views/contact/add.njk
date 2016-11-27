@@ -18,8 +18,6 @@
 
             {% if editMode %}<input type="hidden" name="editFlag" value="{{ contact.id }}">{% endif %}
 
-            <input type="file" name="dummy-test">
-
             <label>Keresztnév
                 <input type="text" placeholder="Ferenc" name="firstname"
                        value="{% if editMode %}{% if contact.firstname %}{{ contact.firstname }}{% endif %}{% else %}{{ old('firstname') }}{% endif %}">
