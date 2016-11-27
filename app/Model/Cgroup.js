@@ -5,7 +5,7 @@ const Lucid = use('Lucid')
 class Cgroup extends Lucid {
 
 
-    static get dateFormat () {
+    static get dateFormat() {
         return 'YYYY-MM-DD HH:mm:ss'
     }
 
@@ -15,6 +15,10 @@ class Cgroup extends Lucid {
 
     contacts() {
         return this.hasMany('App/Model/Contact');
+    }
+
+    users() {
+        return this.belongsToMany('App/Model/User')
     }
 }
 

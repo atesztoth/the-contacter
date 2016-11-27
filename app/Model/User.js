@@ -25,6 +25,10 @@ class User extends Lucid {
         return this.hasMany('App/Model/Contact')
     }
 
+    cgroups() {
+        return this.hasMany('App/Model/Cgroup')
+    }
+
     apiTokens() {
         return this.hasMany('App/Model/Token')
     }

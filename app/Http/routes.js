@@ -39,6 +39,8 @@ Route.get('/contact/:id', 'ContactController.show').as('showContact').middleware
 
 // Contact groups:
 Route.get('/contact-groups', 'CgroupController.list').as('contactGroups').middleware('auth')
+Route.post('/contact-groups/save-group', 'CgroupController.saveAction').as('saveCgroup').middleware('auth')
+Route.get('/contact-groups/remove-group/:id', 'CgroupController.removeAction').as('removeCgroup').middleware('auth')
 
 // Misc (but important!):
 Route.get('/serveimage/:imageName', 'ContactController.serveImage').as('imageServer').middleware('auth')

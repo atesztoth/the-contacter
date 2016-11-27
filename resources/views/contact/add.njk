@@ -4,13 +4,7 @@
     <link rel="stylesheet" href="/assets/css/list.css">
 {% endblock %}
 {% block content %}
-    {% if old('errors') | length > 0 %}
-        <ul class="error-list">
-            {% for error in old('errors') %}
-                <li>{{ error.message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    {% include 'partials/error-list.njk' %}
     <div id="contact-add">
         <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
         <form action="{{ 'saveContactAction' | route() }}" method="POST" enctype="multipart/form-data">
@@ -46,16 +40,32 @@
                 <input type="file" id="profileImageUpload" class="show-for-sr" name="profileImage">
             </fieldset>
 
-            <label>
-                Email címek (típus-email#típus-email...)
-                <textarea placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
-                          name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
-            </label>
+            <select name="test[]" multiple="multiple">
+                <option value="fake">your</option>
+                <option value="asfd">pitto</option>
+                <option value="sauce">pizza</option>
+            </select>
+
+            {% if cgroups and cgroups | length > 0 %}
+                <label>Kategóriához adás
+                    <select name="cg[]" multiple="multiple">
+                        {% for cg in cgroups %}
+                            <option value="{{ cg.id }}">{{ cg.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+            {% endif %}
 
             <label>
                 Telefonszámok (típus-telefonszám#típus-telefonszám...)
                 <textarea placeholder="magán-+36301234567#céges-06201234567"
                           name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
+            </label>
+
+            <label>
+                Email címek (típus-email#típus-email...)
+                <textarea placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
+                          name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
             </label>
 
             <label>
@@ -69,14 +79,6 @@
                 <textarea placeholder="Megjegyzés..."
                           name="comment">{% if editMode %}{% if contact.comment %}{{ contact.comment }}{% endif %}{% else %}{{ old('comment') }}{% endif %}</textarea>
             </label>
-
-            {% if cgroups | length > 0 %}
-                <select name="cgroup">
-                    {% for cg in cgroups %}
-                        <option value="{{ cg.id }}">{{ cg.name }}</option>
-                    {% endfor %}
-                </select>
-            {% endif %}
 
             <input type="submit" value="Mentés">
         </form>

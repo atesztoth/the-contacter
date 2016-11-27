@@ -60,6 +60,7 @@ class ContactController {
 
     * saveAction(request, response) {
         const contactData = request.all()
+        console.log(request)
         const myMessages = {
             'firstname.required': 'A keresztnév megadása kötelező!',
             'surname.required': 'A vezetéknév megadása kötelező!'
@@ -68,6 +69,9 @@ class ContactController {
             firstname: 'required',
             surname: 'required'
         }, myMessages)
+
+        console.log(request.param('cg'))
+        yield response.json(contactData)
 
         if (validation.fails()) {
             yield request

@@ -1,0 +1,6 @@
+{% if old('successMsg') %}
+    <div data-alert class="alert-box success radius">
+        {{ old('successMsg') }}
+        <a href="#" class="close">&times;</a>
+    </div>
+{% endif %}

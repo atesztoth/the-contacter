@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/assets/css/cgrouplist.css">
+    <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.css">
 {% endblock %}
 
 {% block content %}
@@ -15,20 +16,47 @@
     {% endif %}
     <div id="cgroup-list">
 
+        <h1>Új csoport hozzáadása</h1>
+
+        {% include 'partials/error-list.njk' %}
+        <form action="{{ 'saveCgroup' | route() }}" accept-charset="utf-8" method="post" id="addform">
+            {{ csrfField }}
+            <label>Csoport neve
+                <input type="text" placeholder="Példa" name="cgname"
+                       value="" placeholder="Csoport neve">
+            </label>
+
+            <input type="submit" value="Mentés">
+        </form>
+
         <h1>Meglévő csoportok</h1>
 
         {% if cgroups and cgroups | length > 0 %}
             <div class="table-scroll">
-                <table>
-
+                <table class="listing-table">
+                    {% for cg in cgroups %}
+                        <tr>
+                            <td><i class="fa fa-users" aria-hidden="true"></i></td>
+                            <td>{{ cg.name }}</td>
+                            <td>
+                                <a href="{{ 'removeCgroup' | route({ id: cg.id }) }}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Törlés
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </table>
+                <p>
+                    * Törlés esetén nem törlődnek a csaoportba tartozó kontaktok, csupán a köztük lévő kapcsolat, és a
+                    csoport szűnik meg.
+                </p>
             </div>
         {% else %}
 
             <div class="callout warning">
                 <h5>Nincsenek még kontakt csoportok.</h5>
                 <p>Nincsenek még kontakt csoportok a rendszerhez adva.</p>
-                <a href="#">A fenti form használatával adhat hozzá újat.</a>
+                <a href="#addform">A fenti form használatával adhat hozzá újat.</a>
             </div>
 
         {% endif %}
