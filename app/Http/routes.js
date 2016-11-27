@@ -24,7 +24,18 @@ Route.post('/loginaction', 'HomeController.loginAction').as('loginAction')
 Route.get('/logout', 'HomeController.logout').as('logout')
 
 // Protected routes:
+// Listing:
 Route.get('/contacts', 'ContactController.list').as('contactList').middleware('auth')
+
+// Adding:
 Route.get('/contact/new-contact', 'ContactController.add').as('addContact').middleware('auth')
-Route.post('/contact/new-contact', 'ContactController.addAction').as('addContactAction').middleware('auth')
+Route.post('/contact/save-contact', 'ContactController.saveAction').as('saveContactAction').middleware('auth')
+
+// Editing:
+Route.get('/contact/edit/:id', 'ContactController.edit').as('editContact').middleware('auth')
+
+// Showing:
 Route.get('/contact/:id', 'ContactController.show').as('showContact').middleware('auth')
+
+// Misc (but important!):
+Route.get('/serveimage/:imageName', 'ContactController.serveImage').as('imageServer').middleware('auth')

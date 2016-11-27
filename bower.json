@@ -25,7 +25,8 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "requirejs": "^2.3.2",
-    "foundation-sites": "^6.2.4"
+    "foundation-sites": "^6.2.4",
+    "font-awesome": "^4.7.0"
   },
   "resolutions": {
     "jquery": "~3.1.1"

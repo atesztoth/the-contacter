@@ -1,13 +1,9 @@
 {% extends 'master.njk' %}
-
 {% block pagetitle %}The Contacter - Listpage{% endblock %}
-
 {% block stylesheets %}
     <link rel="stylesheet" href="/assets/css/list.css">
 {% endblock %}
-
 {% block content %}
-
     {% if old('errors') | length > 0 %}
         <ul class="error-list">
             {% for error in old('errors') %}
@@ -15,57 +11,53 @@
             {% endfor %}
         </ul>
     {% endif %}
-
     <div id="contact-add">
         <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
-        <form action="{{ 'addContactAction' | route }}" method="POST" enctype="multipart/form-data">
+        <form enctype="multipart/form-data" action="{{ 'saveContactAction' | route() }}" method="POST">
             {{ csrfField }}
+            
+            {% if editMode %}<input type="hidden" name="editFlag" value="{{ contact.id }}">{% endif %}
+
+            <input type="file" name="dummy-test">
             <label>Keresztnév
-                <input type="text" placeholder="Ferenc" name="firstname" value="{{ old('firstname') }}">
+                <input type="text" placeholder="Ferenc" name="firstname" value="{% if editMode %}{% if contact.firstname %}{{ contact.firstname }}{% endif %}{% else %}{{ old('firstname') }}{% endif %}">
             </label>
-
             <label>Vezetéknév
-                <input type="text" placeholder="Példa" name="surname" value="{{ old('surname') }}">
+                <input type="text" placeholder="Példa" name="surname" value="{% if editMode %}{% if contact.surname %}{{ contact.surname }}{% endif %}{% else %}{{ old('surname') }}{% endif %}">
             </label>
-
             <label>Becenév
-                <input type="text" placeholder="TheContacter" name="nickname" value="{{ old('nickname') }}">
+                <input type="text" placeholder="TheContacter" name="nickname" value="{% if editMode %}{% if contact.nickname %}{{ contact.nickname }}{% endif %}{% else %}{{ old('nickname') }}{% endif %}">
             </label>
-
             <fieldset>
                 <legend>Kép feltöltése</legend>
+
+                {% if editMode and contact.image %}
+                    <div class="current-image">
+                        <img src="{{ 'imageServer' | route({ imageName: contact.image.url })  }}">
+                    </div>
+                {% endif %}
+
                 <label for="profileImageUpload" class="button">Profilkép feltöltése</label>
                 <input type="file" id="profileImageUpload" class="show-for-sr" name="profileImage">
             </fieldset>
-
-
-            <!--div class="input-group">
-                <span class="input-group-label">Személyes</span>
-                <input class="input-group-field" type="email">
-            </div-->
-
             <label>
                 Email címek (típus-email#típus-email...)
                 <textarea placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
-                          name="emails">{{ old('emails') }}</textarea>
+                name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
             </label>
-
             <label>
                 Telefonszámok (típus-telefonszám#típus-telefonszám...)
-                <textarea placeholder="magán-+36301234567#céges-06201234567" name="tnums">{{ old('tnums') }}</textarea>
+                <textarea placeholder="magán-+36301234567#céges-06201234567" name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
             </label>
-
             <label>
                 Helyek (típus-cím#típus-cím...)
                 <textarea placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
-                          name="addresses">{{ old('addresses') }}</textarea>
+                name="addresses">{% if editMode %}{% if contact.addresses %}{{ contact.addresses }}{% endif %}{% else %}{{ old('addresses') }}{% endif %}</textarea>
             </label>
-
             <label>
                 Megjegyzés csatolása
-                <textarea placeholder="Megjegyzés..." name="comment">{{ old('comment') }}</textarea>
+                <textarea placeholder="Megjegyzés..." name="comment">{% if editMode %}{% if contact.comment %}{{ contact.comment }}{% endif %}{% else %}{{ old('comment') }}{% endif %}</textarea>
             </label>
-
             {% if cgroups | length > 0 %}
                 <select multiple>
                     {% for cg in cgroups %}
@@ -73,7 +65,6 @@
                     {% endfor %}
                 </select>
             {% endif %}
-
             <input type="submit" value="Mentés">
         </form>
     </div>

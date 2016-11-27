@@ -1,11 +1,9 @@
 {% extends 'master.njk' %}
-
 {% block pagetitle %}The Contacter - {{ contact.firstname ~ ' ' ~ contact.lastname }}{% endblock %}
-
 {% block stylesheets %}
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
     <link rel="stylesheet" href="/assets/css/show.css">
 {% endblock %}
-
 {% block content %}
     {% if old('successMsg') %}
         <div data-alert class="alert-box success radius">
@@ -21,35 +19,65 @@
             <div class="name-wrapper">
                 <span class="person-name">{{ contact.firstname ~ ' ' ~contact.surname }}</span>
             </div>
+            {% if contact.nickname %}
+                <div class="nick-wrapper">
+                    <span class="nickname">{{ contact.nickname }}</span>
+                </div>
+            {% endif %}
+            <div class="actionbar">
+                <ul>
+                    <li><a href="{{ 'editContact' | route({id: contact.id}) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
         </div>
         <div class="contact-wrapper">
-
             {% if contact.image %}
-                <img src="{{ contact.image.url }}">
+                <img src="{{ 'imageServer' | route({ imageName: contact.image.url })  }}">
             {% endif %}
-
+            {% if contact.tnums | length > 0 %}
+                <div class="pack">
+                    <div class="title">Telefonszámok</div>
+                    <div class="content">
+                        <ul class="email-list">
+                            {% for tnum in contact.tnums %}
+                                <li><span class="type">{{ tnum.type }}</span> <span class="the-thing">{{ tnum.number }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
             {% if contact.emails | length > 0 %}
                 <div class="pack">
                     <div class="title">Email címek</div>
                     <div class="content">
                         <ul class="email-list">
                             {% for email in contact.emails %}
-                                <li>{{ email.type }} {{ email.email }}</li>
+                                <li><span class="type">{{ email.type }}</span> <span class="the-thing">{{ email.email }}</span></li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
             {% endif %}
-
+            {% if contact.addresses | length > 0 %}
+                <div class="pack">
+                    <div class="title">Email címek</div>
+                    <div class="content">
+                        <ul class="email-list">
+                            {% for address in contact.addresses %}
+                                <li><span class="type">{{ address.type }}</span> <span class="the-thing">{{ address.address }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
             {% if contact.comment %}
                 <div class="pack">
                     <div class="title">Megjegyzésem</div>
                     <div class="content">
-                        <p>{{ contect.comment }}</p>
+                        <p>{{ contact.comment }}</p>
                     </div>
                 </div>
             {% endif %}
-
             {% if contact.cgroups | length > 0 %}
                 <div class="pack">
                     <div class="title">Csoportok, melyekbe a kontakt tartozik</div>
@@ -62,7 +90,6 @@
                     </div>
                 </div>
             {% endif %}
-
         </div>
     </div>
 {% endblock %}

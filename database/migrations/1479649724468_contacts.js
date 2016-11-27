@@ -8,7 +8,7 @@ class ContactsTableSchema extends Schema {
         this.create('contacts', (table) => {
             table.increments()
             table.integer('cgroup_id').unsigned().references('id').inTable('cgroups')
-            table.string('url_string')
+            table.integer('created_by_id').unsigned().references('id').inTable('users') // for administration
             table.string('surname')
             table.string('firstname')
             table.string('nickname')

@@ -12,6 +12,10 @@ class Contact extends Lucid {
         return 'created_at'
     }
 
+    user() {
+        return this.belongsTo('App/Model/User')
+    }
+
     cgroups() {
         // Since a contact can be a part of many cgroups, and vica versa, this is an n:m realitonship.
         return this.belongsToMany('App/Model/Cgroup')

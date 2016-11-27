@@ -29,8 +29,11 @@ gulp.task('sass:cmp', function () {
         .pipe(gulp.dest('public/assets/css'));
 });
 
-gulp.task('foundation:cmp:sass', function () {
-    return gulp.src('resources/bower/foundation-sites/assets/foundation.scss')
+gulp.task('sass:cmp:assets', function () {
+    return gulp.src([
+        'resources/bower/foundation-sites/assets/foundation.scss',
+        'resources/bower/font-awesome/scss/font-awesome.scss'
+        ])
         .pipe(sass({}))
         .pipe(gulp.dest('public/assets/css'));
 });
@@ -62,7 +65,7 @@ gulp.task('bower:install', function () {
     return bower();
 });
 
-gulp.task('full-compress:css', ['foundation:cmp:sass'], function () {
+gulp.task('full-compress:css', ['sass:cmp:assets'], function () {
     gulp.start('compress:css');
 });
 
