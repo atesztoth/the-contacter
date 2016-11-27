@@ -133,8 +133,10 @@ class ContactController {
         // Handling the image
         let weHaveAnImage = false;
         const image = new Image()
+        const requestFile = request.file('profileImage').toJSON()
 
-        if (request.file('profileImage').toJSON().size > 0) {
+        if (requestFile.size > 0) {
+            // TODO: Check if it already has an image, and replace it with a new one!
             const profileImage = request.file('profileImage', {
                 maxSize: '5mb',
                 allowedExtensions: ['jpg', 'JPG', 'png']
@@ -176,8 +178,17 @@ class ContactController {
                 }
             }
 
-            console.log(Helpers.storagePath('p_images'), fileName)
+            // console.log(Helpers.storagePath('p_images'), fileName)
+            // The following function is just too fancy-ass to give any useable
+            // error messages, so I went as far as using a built-in nodejs funciton,
+            // that could give me some useable error messages.
+            // I got fixed the (EXDEV) error in like 3 minutes with a big googleing,
+            // but spent 2 hours on NOTHING because of this b*tchass function underneath.
+            // Hellyeah...
             yield profileImage.move(Helpers.storagePath('p_images'), fileName)
+
+            // Gonna do that:
+            // fs.renameSync(requestFile.path, path.join(Helpers.storagePath('p_images'), fileName))
 
             if (!profileImage.moved()) {
                 console.log('The image could not be moved!!')
