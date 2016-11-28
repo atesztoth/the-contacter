@@ -45,7 +45,7 @@ class ContactController {
         if (theContact) {
             // If we could find the contact we were looking for, then we can load all
             // the realted models:
-            yield theContact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load() // Lazy Eager load
+            yield theContact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load()
 
             console.log(theContact.toJSON())
 
@@ -60,7 +60,10 @@ class ContactController {
 
     * saveAction(request, response) {
         const contactData = request.all()
-        console.log(request)
+        // TODO: Rájönni, hogy mégis milyen megfontolásból nem bírja bepostolni
+        // multipart/form-data esetén az azonos néven menő fieldeket. Elég rohadtul idegesítő.
+        // KÉPFELTÖLTÉS IDEIGLENESEN OFF.
+
         const myMessages = {
             'firstname.required': 'A keresztnév megadása kötelező!',
             'surname.required': 'A vezetéknév megadása kötelező!'
@@ -69,9 +72,6 @@ class ContactController {
             firstname: 'required',
             surname: 'required'
         }, myMessages)
-
-        console.log(request.param('cg'))
-        yield response.json(contactData)
 
         if (validation.fails()) {
             yield request
@@ -137,7 +137,10 @@ class ContactController {
         // Handling the image
         let weHaveAnImage = false;
         const image = new Image()
-        const requestFile = request.file('profileImage').toJSON()
+        // const requestFile = request.file('profileImage').toJSON()
+        const requestFile = function () {
+            let size = 0
+        }
 
         if (requestFile.size > 0) {
             // Existing image? Ok, it is only possible if it is not a new contact object,
@@ -243,6 +246,17 @@ class ContactController {
             yield contact.image().save(image)
         }
 
+        // Ooh, and the contact groups:
+        // Doing it the hard way again. Breaking every relationships, then reassociating them again.
+        if (typeof contactData.cg !== 'undefined' && contactData.cg !== null) {
+            const cgIDS = contactData.cg
+            const cgroups = yield CGroup.query().where('user_id', request.currentUser.id).whereIn('id', cgIDS).ids()
+
+            // yield response.json(cgroups)
+
+            yield contact.cgroups().sync(cgroups)
+        }
+
         // Here comes the optional part
         if (typeof contactData.emails !== 'undefined') {
             if (contactData.emails.indexOf('#') !== -1) {
@@ -332,25 +346,35 @@ class ContactController {
     }
 
     * edit(request, response) {
-        let dataForView = {}
+        const CGroups = yield CGroup.all()
         const contactID = request.param('id')
         const theContact = yield Contact.find(contactID)
-        let contactForView
+        let dataForView = {
+            'attachedCGids': []
+        }
 
         if (theContact) {
+            // const cgids = yield theContact.cgroups().ids() // Ambigous id... Why do you fckn hate me adonis?! I spent all my week w/ u.
             yield theContact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load() // Lazy Eager load
+            let contactForView = theContact.toJSON()
 
-            contactForView = theContact.toJSON()
-            // console.log(contactForView)
+            // Ok enough playing database master with no success, lets quickly get all those ids that I need:
+            let ids = []
+
+            for (let x of contactForView.cgroups) {
+                ids.push(x.id)
+            }
+
+            dataForView['attachedCGids'] = ids
 
             // Redirecting if he is doing some monkey business:
             if (contactForView.created_by_id !== request.currentUser.id) {
                 response.unauthorized('Hozzáférés megtagadva.')
             }
 
-            contactForView.emails = this.mySerializer(theContact.toJSON().emails, ['type', 'email'])
-            contactForView.tnums = this.mySerializer(theContact.toJSON().tnums, ['type', 'number'])
-            contactForView.addresses = this.mySerializer(theContact.toJSON().addresses, ['type', 'address'])
+            contactForView.emails = this.mySerializer(contactForView.emails, ['type', 'email'])
+            contactForView.tnums = this.mySerializer(contactForView.tnums, ['type', 'number'])
+            contactForView.addresses = this.mySerializer(contactForView.addresses, ['type', 'address'])
 
             dataForView['contact'] = contactForView
             dataForView['editMode'] = true
@@ -358,6 +382,8 @@ class ContactController {
         } else {
             response.notFound('A keresett kontakt nem található.')
         }
+
+        dataForView['cgroups'] = CGroups.toJSON()
 
         yield response.sendView('contact/add', dataForView)
     }

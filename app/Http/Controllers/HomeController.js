@@ -13,6 +13,33 @@ class HomeController {
             response.route('contactList')
         }
 
+        const Contact = use('App/Model/Contact')
+        const CGroup = use('App/Model/CGroup')
+
+        /* EXPREIMENT:
+         let contact = new Contact()
+         let cg = new CGroup()
+         let cg2 = new CGroup()
+         contact.firstname = 'Attila'
+         contact.surname = 'Tóth'
+         cg.name = 'Faf'
+         cg2.name = 'asdasd'
+
+         yield contact.save()
+         yield cg.save()
+         yield cg2.save()
+
+         const cnt = yield Contact.find(1)
+         const cgids = yield CGroup.query().whereIn('id', [1, 2]).ids()
+
+         yield cnt.cgroups().sync(cgids)
+
+         // Getting related cgroups:
+         // we know the cnt object, so:
+         let cgroups = yield cnt.cgroups().fetch()
+
+         yield response.json(cgroups)*/
+
         yield response.sendView('home/home');
     }
 
@@ -28,9 +55,9 @@ class HomeController {
             same: 'A jelszavaknak meg kell egyezniük!'
         }
         const validation = yield Validator.validateAll(userData, User.rules, myMessages)
-        var data = {
+        let data = {
             'errors': {}
-        };
+        }
 
         if (request.method() === 'POST') {
             if (validation.fails()) {

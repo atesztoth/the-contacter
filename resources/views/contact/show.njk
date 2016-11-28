@@ -82,13 +82,14 @@
                     </div>
                 </div>
             {% endif %}
+
             {% if contact.cgroups | length > 0 %}
                 <div class="pack">
                     <div class="title">Csoportok, melyekbe a kontakt tartozik</div>
                     <div class="content">
                         <ul class="simple-list">
-                            {% for cgroup in contant.cgroups %}
-                                <li>{{ cgroup }}</li>
+                            {% for cg in contact.cgroups %}
+                                <li>{{ cg.name }}</li>
                             {% endfor %}
                         </ul>
                     </div>

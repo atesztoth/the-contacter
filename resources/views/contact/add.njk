@@ -7,7 +7,7 @@
     {% include 'partials/error-list.njk' %}
     <div id="contact-add">
         <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
-        <form action="{{ 'saveContactAction' | route() }}" method="POST" enctype="multipart/form-data">
+        <form method="post" action="{{ 'saveContactAction' | route() }}"> <!-- enctype="multipart/form-data" -->
             {{ csrfField }}
 
             {% if editMode %}<input type="hidden" name="editFlag" value="{{ contact.id }}">{% endif %}
@@ -40,17 +40,12 @@
                 <input type="file" id="profileImageUpload" class="show-for-sr" name="profileImage">
             </fieldset>
 
-            <select name="test[]" multiple="multiple">
-                <option value="fake">your</option>
-                <option value="asfd">pitto</option>
-                <option value="sauce">pizza</option>
-            </select>
-
             {% if cgroups and cgroups | length > 0 %}
                 <label>Kategóriához adás
-                    <select name="cg[]" multiple="multiple">
+                    <select name="cg" multiple="multiple">
                         {% for cg in cgroups %}
-                            <option value="{{ cg.id }}">{{ cg.name }}</option>
+                            <option value="{{ cg.id }}"
+                                    {% if attachedCGids | length > 0 and cg.id in attachedCGids %}selected{% endif %}>{{ cg.name }}</option>
                         {% endfor %}
                     </select>
                 </label>

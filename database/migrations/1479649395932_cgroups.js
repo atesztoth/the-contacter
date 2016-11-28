@@ -7,8 +7,8 @@ class CgroupTableSchema extends Schema {
     up() {
         this.create('cgroups', (table) => {
             table.increments()
-            table.integer('user_id').unsigned().references('id').inTable('users')
-            table.string('name').unique()
+            table.integer('user_id').unsigned().references('id').inTable('users') // for administration!
+            table.string('name')
             table.timestamps()
         })
     }

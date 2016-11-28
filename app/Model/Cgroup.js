@@ -14,7 +14,7 @@ class Cgroup extends Lucid {
     }
 
     contacts() {
-        return this.hasMany('App/Model/Contact');
+        return this.belongsToMany('App/Model/Contact');
     }
 
     users() {

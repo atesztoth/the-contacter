@@ -68,9 +68,7 @@ class CgroupController {
         console.log(cgroup)
 
         if (cgroup) {
-            // But if we got this cg, then lets brake connection with all
-            // the related contacts, then remove it!
-
+            // It automatically removes connection between contacts<->cgroups. Beautiful to see aawwhh.
             yield cgroup.delete()
         } else {
             yield request

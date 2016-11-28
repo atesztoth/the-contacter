@@ -18,7 +18,7 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.welcome') // Renders the view directly
-Route.route('/registration', ['GET', 'POST', 'HEAD'], 'HomeController.registration').as('regpage')
+Route.route('/registration', ['GET', 'POST'] , 'HomeController.registration').as('regpage')
 Route.get('/login', 'HomeController.login').as('login')
 Route.post('/loginaction', 'HomeController.loginAction').as('loginAction')
 Route.get('/logout', 'HomeController.logout').as('logout')
