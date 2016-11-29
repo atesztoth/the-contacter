@@ -1,5 +1,7 @@
 @import 'common-internal';
 
+$paddingTopBottom: 10vh;
+
 body {
   @include regularFont();
   background-color: $bodyBg;
@@ -22,10 +24,35 @@ body {
     }
 
     .content-wrapper {
-      padding-top: 10vh;
-      padding-bottom: 10vh;
+      padding-top: $paddingTopBottom;
+      padding-bottom: $paddingTopBottom;
       min-height: 100vh;
       background-color: $contentBg;
+
+      ul.side-menu {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        list-style: none;
+        li {
+          * {
+            display: inline;
+          }
+          a {
+            @include transition(all 0.2s ease-in-out);
+            font-size: $iconDefaultSize;
+
+            &:hover {
+              font-size: $iconHoverSize;
+            }
+          }
+        }
+      }
+
+      .master-col-wrapper {
+        position: relative;
+      }
     }
   }
 }
