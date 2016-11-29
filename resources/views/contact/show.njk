@@ -1,9 +1,11 @@
 {% extends 'master.njk' %}
+
 {% block pagetitle %}The Contacter - {{ contact.firstname ~ ' ' ~ contact.lastname }}{% endblock %}
+
 {% block stylesheets %}
-    <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/assets/css/show.css">
 {% endblock %}
+
 {% block content %}
     {% if old('successMsg') %}
         <div data-alert class="alert-box success radius">

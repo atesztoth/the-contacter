@@ -1,6 +1,6 @@
 @import 'common-internal';
 
-$paddingTopBottom: 10vh;
+$paddingTopBottom: 10px;
 
 body {
   @include regularFont();
@@ -24,34 +24,77 @@ body {
     }
 
     .content-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
       padding-top: $paddingTopBottom;
       padding-bottom: $paddingTopBottom;
       min-height: 100vh;
       background-color: $contentBg;
 
       ul.side-menu {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-
+        display: block;
+        position: relative;
         list-style: none;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+
+        @include breakpoint(medium up) {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+        }
+
         li {
-          * {
-            display: inline;
+          display: inline-block;
+          vertical-align: middle;
+          text-align: center;
+          width: 25%;
+
+          @include breakpoint(medium up) {
+            display: block;
+            margin-bottom: 10px;
           }
+
+          &:first-child {
+            text-shadow: 1px 2px $menuShadowColor;
+            margin-bottom: 0;
+          }
+
+          &.menutext {
+            @include font-shrikhand();
+            @include font-size(20px);
+          }
+
           a {
+            display: block;
             @include transition(all 0.2s ease-in-out);
             font-size: $iconDefaultSize;
 
             &:hover {
               font-size: $iconHoverSize;
             }
+
+            i {
+              display: block;
+            }
+
+            span {
+              @extend i;
+
+              &.title {
+                @include font-size(15px);
+              }
+            }
+          }
+
+          &:hover {
+            text-shadow: 1px 2px $menuShadowColor;
           }
         }
-      }
-
-      .master-col-wrapper {
-        position: relative;
       }
     }
   }

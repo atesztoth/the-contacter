@@ -3,22 +3,12 @@
 {% block pagetitle %}The Contacter - Listpage{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/assets/css/list.css">
 {% endblock %}
 
 {% block content %}
     {% include 'partials/success-msg.njk' %}
     {% include 'partials/error-list.njk' %}
-
-    <ul class="side-menu">
-        <li>
-            <a href="{{ 'addContact' | route() }}"> <i class="fa fa-user" aria-hidden="true"></i></a>
-        </li>
-        <li>
-            <a href="{{ 'contactGroups' | route() }}"><i class="fa fa-users" aria-hidden="true"></i></a>
-        </li>
-    </ul>
 
     <div id="contact-list">
         <div class="content-wrapper">
