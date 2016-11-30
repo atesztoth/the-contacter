@@ -28,18 +28,26 @@
                     <span class="title">Főoldal / lista</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ 'addContact' | route() }}">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span class="title">Kontaktok</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ 'contactGroups' | route() }}">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <span class="title">Csoportok</span>
-                </a>
-            </li>
+            {% if currentUser %}
+                <li>
+                    <a href="{{ 'addContact' | route() }}">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="title">Kontaktok</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ 'contactGroups' | route() }}">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span class="title">Csoportok</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ 'logout' | route() }}">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <span class="title">Kilépés</span>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
 
         <div class="row">

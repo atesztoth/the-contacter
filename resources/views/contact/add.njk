@@ -8,6 +8,8 @@
 
 {% block content %}
     {% include 'partials/error-list.njk' %}
+    <h1>{% if editMode %}Kontakt szerkesztése{% else %}Új kontakt hozzáadása{% endif %}</h1>
+
     <div id="contact-add">
         <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
         <form method="post" action="{{ 'saveContactAction' | route() }}"> <!-- enctype="multipart/form-data" -->
@@ -78,7 +80,7 @@
                           name="comment">{% if editMode %}{% if contact.comment %}{{ contact.comment }}{% endif %}{% else %}{{ old('comment') }}{% endif %}</textarea>
             </label>
 
-            <input type="submit" value="Mentés">
+            <button class="button" type="submit">Mentés</button>
         </form>
     </div>
 {% endblock %}

@@ -1,12 +1,14 @@
 {% extends 'master.njk' %}
 
-{% block pagetitle %}The Contacter - {{ contact.firstname ~ ' ' ~ contact.lastname }}{% endblock %}
+{% block pagetitle %}The Contacter - {{ contact.firstname ~ ' ' ~ contact.surname }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/assets/css/show.css">
 {% endblock %}
 
 {% block content %}
+    <h1>{{ contact.firstname ~ ' ' ~ contact.surname }}</h1>
+
     {% if old('successMsg') %}
         <div data-alert class="alert-box success radius">
             {{ old('successMsg') }}

@@ -11,21 +11,23 @@
     {% include 'partials/error-list.njk' %}
 
     <div id="contact-list">
-        <div class="content-wrapper">
 
-            {% if contacts | length > 0 %}
-                <ul>
-                    {% for contact in contacts %}
-                        <li>
-                            <a href="{{ 'showContact' | route({id: contact.id}) }}">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>
-                    Még nincsenek hozzáadott kontaktjai.
-                </p>
-            {% endif %}
-        </div>
+        <h1>Kontaktok</h1>
+
+        {% if contacts | length > 0 %}
+            <ul class="contact-list">
+                {% for contact in contacts %}
+                    <li>
+                        <i class="fa fa-user" aria-hidden="true"></i> <a
+                                href="{{ 'showContact' | route({id: contact.id}) }}">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>
+                Még nincsenek hozzáadott kontaktjai.
+            </p>
+        {% endif %}
+
     </div>
 {% endblock %}

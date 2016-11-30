@@ -11,7 +11,7 @@
         <div class="welcome-wrapper">
             <div class="inside-wrapper">
                 <div class="welcome-text text-center">
-                    <p>Welcome to your new contact manager!</p>
+                    <span>Welcome to your new contact manager!</span>
                 </div>
                 <div class="nav-menu menu-centered">
                     <ul class="menu custom-menu">
@@ -20,51 +20,16 @@
                     </ul>
                 </div>
                 <div class="welcome-description">
-                    {% if old('regresponse') and old('regresponse') === 'success' %}
-                        <div data-alert class="alert-box success radius">
-                            Sikeres regisztráció! Mostmár beléphet.
-                            <a href="#" class="close">&times;</a>
-                        </div>
-                    {% endif %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus suscipit auctor
-                        hendrerit. Lorem
-                        ipsum dolor sit amet, consectetur adipiscing elit. Ut et elit a ligula accumsan
-                        bibendum. Donec
-                        viverra ante vel sagittis bibendum. Integer sed arcu lorem. Donec dui arcu, auctor quis
-                        bibendum
-                        et,
-                        porta non elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                        inceptos
-                        himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac
-                        ultricies
-                        enim.
-                        Duis lobortis varius justo. Curabitur aliquam, nibh id auctor dapibus, risus nunc
-                        rhoncus dui,
-                        et
-                        suscipit ligula eros at quam. Integer condimentum rhoncus velit, nec gravida felis
-                        eleifend ut.
-                        Nullam tincidunt ac velit sit amet volutpat. Fusce iaculis maximus venenatis.
-
-                        Donec cursus id turpis a efficitur. Cras vel massa cursus, sagittis diam eget, egestas
-                        est.
-                        Donec
-                        massa dolor, eleifend pharetra luctus et, eleifend non est. Suspendisse sollicitudin,
-                        arcu ac
-                        interdum vehicula, mi quam convallis mi, sit amet volutpat velit sem euismod justo. Nam
-                        a
-                        pharetra
-                        risus. Nam erat ligula, consectetur id suscipit at, blandit a quam. Phasellus vitae
-                        convallis
-                        diam.
-                        Donec fermentum egestas nisl, ullamcorper rhoncus sem malesuada vitae. In semper sem sed
-                        nulla
-                        gravida, sed tempor nisi faucibus. Proin non imperdiet odio, sed sagittis nibh. Nam quis
-                        risus
-                        fringilla, scelerisque dolor et, tincidunt ante. Donec a nunc non tellus maximus
-                        consequat eu eu
-                        neque. Quisque in ante in purus mattis fringilla nec ac augue. In eget diam quis neque
-                        tempor
-                        sodales. Donec sit amet sapien viverra, tincidunt quam vitae, auctor sem.</p>
+                    {% include 'partials/success-msg.njk' %}
+                    <p>
+                        A The Contacter azért jött létre, hogy segíse az Ön mindennapi életét annyival, hogy hozzájárul
+                        kapcsolatai egyszerű nyílvántartásához.<br>
+                        Az alkalmazás lehetőséget ad kapcsolatok létrehozására, melyekhez csatolhat telefonszámokat,
+                        email címeket, lakhelyeket, és megjegyzéseket is. Egy amolyan könnyen használható
+                        "telefonkönyként"
+                        tudnám leírni.<br>
+                        <span class="nicetext">Próbálja ki!</span>
+                    </p>
                 </div>
 
             </div>

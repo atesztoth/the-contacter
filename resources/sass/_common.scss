@@ -9,6 +9,12 @@ body {
   background-position: center center;
   background-size: 100%;
 
+  h1 {
+    @include font-shrikhand();
+    @include font-size(30px);
+    border-bottom: 1px solid $titleBorderColor;
+  }
+
   #content {
     font: inherit;
 
@@ -16,6 +22,14 @@ body {
       display: inline-block;
       width: 100%;
       max-width: 300px;
+      list-style: none;
+
+      li {
+        &.oops {
+          @include font-shrikhand();
+          @include font-size(20px);
+        }
+      }
 
       // Only affects medium screens and larger
       //@include breakpoint(medium) {
@@ -49,10 +63,10 @@ body {
         }
 
         li {
-          display: inline-block;
+          display: block;
           vertical-align: middle;
           text-align: center;
-          width: 25%;
+          width: 80px;
 
           @include breakpoint(medium up) {
             display: block;
@@ -71,8 +85,9 @@ body {
 
           a {
             display: block;
+            text-align: center;
             @include transition(all 0.2s ease-in-out);
-            font-size: $iconDefaultSize;
+            font-size: 0;
 
             &:hover {
               font-size: $iconHoverSize;
@@ -80,6 +95,7 @@ body {
 
             i {
               display: block;
+              font-size: $iconDefaultSize;;
             }
 
             span {

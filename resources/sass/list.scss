@@ -3,17 +3,17 @@
 #contact-list {
   position: relative;
 
-  .content-wrapper {
-    ul {
-      list-style: none;
-      li {
-        cursor: pointer;
-        &:nth-child(2n) {
-          background-color: $grey;
-        }
+  ul.contact-list {
+    list-style: none;
+    li {
+      cursor: pointer;
+
+      &:nth-child(2n) {
+        background-color: $grey;
       }
     }
   }
+
 }
 
 //@each $beer in stout, pilsner, lager {

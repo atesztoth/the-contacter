@@ -81,7 +81,7 @@ class ContactController {
                 })
                 .flash()
 
-            response.route('addContact')
+            yield response.route('addContact') // TODO: check
             return;
         }
 

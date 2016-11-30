@@ -54,26 +54,37 @@ class HomeController {
             min: 'A jelszavaknak minimum 6 karakter hosszúnak kell lenniük.',
             same: 'A jelszavaknak meg kell egyezniük!'
         }
-        const validation = yield Validator.validateAll(userData, User.rules, myMessages)
-        let data = {
-            'errors': {}
+        const rules = {
+            // username: 'required|unique:users',
+            email: 'required|email|unique:users',
+            password: 'required|min:6',
+            password2: 'required|min:6|same:password'
         }
+        const validation = yield Validator.validateAll(userData, rules, myMessages)
 
         if (request.method() === 'POST') {
             if (validation.fails()) {
-                data['errors'] = validation.messages();
+                yield request
+                    .withAll()
+                    .andWith({
+                        errors: validation.messages()
+                    })
+                    .flash()
+
+                yield response.route('regpage')
+
             } else {
                 user.email = userData.email;
                 user.password = yield Hash.make(userData.password)
 
                 yield user.save()
-                yield request.with({regresponse: 'success'}).flash()
-                response.redirect('/')
+                yield request.with({successMsg: 'Sikeres regisztráció! Mostmár bejelentkezhet az oldalra.'}).flash()
+                yield response.redirect('/')
                 return
             }
         }
 
-        yield response.sendView('home/registration', data);
+        yield response.sendView('home/registration');
     }
 
     * login(request, response) {
@@ -86,17 +97,19 @@ class HomeController {
 
         try {
             yield request.auth.attempt(email, password)
+            yield request.with({successMsg: 'Sikeres bejelentkezés!'}).flash()
 
-            response.route('contactList')
+            yield response.route('contactList')
         } catch (e) {
-            yield request.with({error: e.message}).flash()
-            response.redirect('back')
+            yield request.withAll().andWith({errors: [e]}).flash()
+            yield response.redirect('back')
         }
     }
 
     * logout(request, response) {
         yield request.auth.logout()
-        yield response.sendView('home/home')
+
+        yield response.redirect('/')
     }
 
 }

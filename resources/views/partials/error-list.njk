@@ -1,5 +1,6 @@
 {% if old('errors') | length > 0 %}
-    <ul class="error-list">
+    <ul class="error-list alert callout">
+        <li class="oops">Woops...</li>
         {% for error in old('errors') %}
             <li>{{ error.message }}</li>
         {% endfor %}

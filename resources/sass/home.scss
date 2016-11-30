@@ -18,12 +18,21 @@
       }
 
       .welcome-text {
-        @include font-shrikhand();
-        font-size: 55px;
-        text-align: left;
+        > span {
+
+          @include font-shrikhand();
+          font-size: 70px;
+          text-align: left;
+          text-shadow: 4px 4px #b9cae5;
+        }
         // margin-top: 10%;
 
         // .min-xs({ font-size: 80px; });
+
+        span.nicetext {
+          @include font-shrikhand();
+          @include font-size(20px);
+        }
       }
 
       .welcome-description {
