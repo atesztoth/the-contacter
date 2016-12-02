@@ -1,0 +1,40 @@
+// dependent on foundation!
+ul.the-contacter-list {
+  list-style: none;
+  display: block;
+  font-size: 0;
+
+  li {
+    cursor: pointer;
+
+    &:nth-child(2n) {
+      background-color: $table-striped-background;
+    }
+
+    div.fake-col {
+      display: inline-block;
+      padding: 0 1%;
+      @include font-size(16px);
+
+      &.list-icon {
+        display: inline-block !important;
+        text-align: center;
+        width: $iconColWidth;
+      }
+
+      &.line-breaker {
+        display: inline !important;
+
+        + div.fake-col {
+          display: inline-block;
+          margin-left: $iconColWidth;
+        }
+
+        &:after {
+          content: ', \A' !important;
+          white-space: pre;
+        }
+      }
+    }
+  }
+}

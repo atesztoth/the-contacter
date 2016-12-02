@@ -1,5 +1,63 @@
 @import 'common';
 
 #contact-show {
+  @include breakpoint(small only) {
+    margin-top: 10px;
+  }
 
+  .image-wrapper {
+    text-align: center;
+
+    > img {
+      width: 70%;
+      display: block;
+      margin: 0 auto;
+    }
+
+  }
+
+  .name-wrapper {
+    h1 {
+      border: 0;
+      @include font-size(30px);
+    }
+  }
+
+  .nick-wrapper {
+    font-style: italic;
+    @include font-size(20px);
+  }
+
+  .actionbar {
+    > ul {
+      display: block;
+      text-align: center;
+      padding: 10px 0;
+      list-style: none;
+      margin: 0;
+
+      > li {
+        display: inline-block;
+
+        a.icon {
+          @include font-size(25px);
+        }
+      }
+    }
+  }
+
+  table {
+    tr {
+      th {
+        text-align: center;
+        width: 50%;
+      }
+
+      td {
+        @extend th;
+      }
+    }
+  }
+
+  @import '_the-contacter_list';
 }

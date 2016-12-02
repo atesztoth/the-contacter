@@ -15,11 +15,40 @@
         <h1>Kontaktok</h1>
 
         {% if contacts | length > 0 %}
-            <ul class="contact-list">
+            <span class="infotext">Az első telefonszám, és email cím megjelenik.</span>
+
+            <table class="show-for-medium contact-list-table">
+                <thead>
+                <tr>
+                    <th>Vezetéknév</th>
+                    <th>Keresztnév</th>
+                    <th>Telefonszám</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <td><a href="{{ 'showContact' | route({id: contact.id}) }}"><span
+                                        class="ghost-center"></span><span>{{ contact.surname }}</span></a></td>
+                        <td><a href="{{ 'showContact' | route({id: contact.id}) }}"><span
+                                        class="ghost-center"></span><span>{{ contact.firstname }}</span></a></td>
+                        <td>{{ contact.tnums[0].number }}</td>
+                        <td>{{ contact.emails[0].email }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul class="the-contacter-list hide-for-medium">
                 {% for contact in contacts %}
                     <li>
-                        <i class="fa fa-user" aria-hidden="true"></i> <a
-                                href="{{ 'showContact' | route({id: contact.id}) }}">{{ contact.firstname ~ ' ' ~ contact.surname }} {% if contact.email %}{{ contact.email }}{% endif %}</a>
+                        <div class="fake-col list-icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                        <div class="fake-col line-breaker"><a
+                                    href="{{ 'showContact' | route({id: contact.id}) }}">{{ contact.surname ~ ' ' ~ contact.firstname }}</a>
+                        </div>
+                        <div class="fake-col line-breaker">{{ contact.tnums[0].number }}</div>
+                        <div class="fake-col">{{ contact.emails[0].email }}</div>
                     </li>
                 {% endfor %}
             </ul>

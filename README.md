@@ -5,7 +5,7 @@ Készítette: Tóth Attila
 ### Description / Leírás:
 This repository has been created for the course of 'Alkalmazások fejlesztése' at ELTE University. Here I keep the files of my project organised, and updated.
 
-Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzushozához jött létre. Az itt található fileok mindig a legfrissebb állást tükrözik.
+Ez a repository az ELTE 'Alkalmazások fejlesztése' című kurzusához jött létre. Az itt található fileok mindig a legfrissebb állást tükrözik.
 
 ### 1. Követelményanalízis
 
@@ -104,13 +104,18 @@ Egy eset bemutatása: ***kontakt hozzáadása***
 ##### 2.1.3 Végpontok
 
 - GET / : Főoldal
-- GET,POST /login : Bejelentkezés
 - GET,POST /registration : Regisztráció
-- GET /contacts : Kontaktok oldal
-- GET /contact/:id : Kontakt megtekintése
-- GET /contacts/groups : Kontaktcsoportok megjelenítése
-- GET,POST /contact/new-contact : Kontakt létrehozása
+- GET /login : Bejelentkezés
+- POST /loginaction : Bejelentkezés
+- GET /logout : Kijelentkezés
+- GET /contact/new-contact : Kontakt létrehozása
+- POST /contact/save-contact : Kontakt mentése
 - GET,POST /contact/edit/:id : Kontakt szerkesztése
+- GET /contact/:id : Kontakt megtekintése
+- GET /contacts : Kontaktok oldal
+- GET /contacts/contact-groups : Kontaktcsoportok megjelenítése
+- POST /contacts/contact-groups/save-group : Kontaktcsoportok mentése
+- POST /contacts/contact-groups/remove-group/:id : Kontaktcsoportok törlése
 
 ##### 2.2 Felhasználói-felület modell
  

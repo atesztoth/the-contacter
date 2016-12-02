@@ -3,16 +3,27 @@
 #contact-list {
   position: relative;
 
-  ul.contact-list {
-    list-style: none;
-    li {
-      cursor: pointer;
+  table.contact-list-table {
+    tr {
+      th {
+        text-align: center;
+      }
 
-      &:nth-child(2n) {
-        background-color: $grey;
+      td {
+        @extend th;
+
+        > a {
+          display: block;
+          height: 67px;
+          margin: -0.5rem -0.625rem -0.625rem;
+
+          @include insert-ghost-element();
+        }
       }
     }
   }
+
+  @import '_the-contacter_list';
 
 }
 

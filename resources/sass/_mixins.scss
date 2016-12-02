@@ -38,3 +38,20 @@
     box-shadow: $top $left $blur $color;
   }
 }
+
+@mixin insert-ghost-element() {
+  .ghost-center {
+    position: relative;
+  }
+  .ghost-center::before {
+    content: " ";
+    display: inline-block;
+    height: 100%;
+    width: 1%;
+    vertical-align: middle;
+  }
+  .ghost-center p {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

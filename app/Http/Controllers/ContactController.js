@@ -16,14 +16,11 @@ const Database = use('Database')
 class ContactController {
 
     * list(request, response) {
-        // We need to fetch all the exsisting contacts now
-        // Fetch 'em directly into the list
-        // About the categories: at this point, we don't care,
-        // there is a dedicated view for that.
-
-        const contacts = yield Contact.query().orderBy('created_at', 'desc').orderBy('firstname', 'asc').orderBy('surname', 'asc').fetch()
-        // console.log('-----------------')
-        // console.log(contacts.toJSON())
+        const contacts = yield Contact.query()
+            .with('tnums', 'emails')
+            .orderBy('created_at', 'desc')
+            .orderBy('firstname', 'asc')
+            .orderBy('surname', 'asc').fetch()
 
         yield response.sendView('contact/list', {
             contacts: contacts.toJSON()
@@ -46,9 +43,6 @@ class ContactController {
             // If we could find the contact we were looking for, then we can load all
             // the realted models:
             yield theContact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load()
-
-            console.log(theContact.toJSON())
-
         } else {
             response.notFound('A keresett kontakt nem található.')
         }

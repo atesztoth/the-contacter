@@ -10,7 +10,7 @@ class HomeController {
     * welcome(request, response) {
         // If the user is logged in, redirect him instantly!
         if (yield request.auth.check()) {
-            response.route('contactList')
+            yield response.route('contactList')
         }
 
         const Contact = use('App/Model/Contact')
@@ -84,7 +84,7 @@ class HomeController {
             }
         }
 
-        yield response.sendView('home/registration');
+        yield response.sendView('home/registration')
     }
 
     * login(request, response) {
@@ -99,10 +99,10 @@ class HomeController {
             yield request.auth.attempt(email, password)
             yield request.with({successMsg: 'Sikeres bejelentkezés!'}).flash()
 
-            yield response.route('contactList')
+            response.route('contactList')
         } catch (e) {
             yield request.withAll().andWith({errors: [e]}).flash()
-            yield response.redirect('back')
+            response.redirect('back') // Ehhez nem kell yield, ez okozta a header módosítási hibát!
         }
     }
 

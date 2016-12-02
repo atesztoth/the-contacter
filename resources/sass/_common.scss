@@ -14,6 +14,10 @@ body {
     @include font-size(30px);
     border-bottom: 1px solid $titleBorderColor;
   }
+  
+  .text-italic {
+    font-style: italic;
+  }
 
   #content {
     font: inherit;
@@ -36,6 +40,10 @@ body {
       //  width: 40%;
       //}
     }
+    .infotext {
+      font-style: italic;
+      font-size: $small-font-size;
+    }
 
     .content-wrapper {
       position: relative;
@@ -47,6 +55,7 @@ body {
       min-height: 100vh;
       background-color: $contentBg;
 
+      $liPaddingsMobile: 10px;
       ul.side-menu {
         display: block;
         position: relative;
@@ -55,27 +64,49 @@ body {
         margin: 0;
         padding: 0;
         font-size: 0;
+        text-align: justify;
+        -ms-text-justify: distribute-all-lines;
+        text-justify: distribute-all-lines;
+        padding-left: $liPaddingsMobile;
+        padding-right: $liPaddingsMobile;
 
-        @include breakpoint(medium up) {
+        @include breakpoint(large up) {
           position: absolute;
           top: 10px;
           left: 10px;
+          padding-left: 0;
+          padding-right: 0;
         }
 
         li {
-          display: block;
+          display: inline-block;
           vertical-align: middle;
           text-align: center;
-          width: 80px;
 
-          @include breakpoint(medium up) {
+          @include breakpoint(large up) {
             display: block;
+            width: 80px;
             margin-bottom: 10px;
           }
 
           &:first-child {
+            display: block;
             text-shadow: 1px 2px $menuShadowColor;
-            margin-bottom: 0;
+            margin-bottom: 10px;
+            width: 100%;
+
+            @include breakpoint(large up) {
+              margin-bottom: 0;
+            }
+          }
+
+          &.lineLong {
+            display: inline-block;
+            width: 100%;
+
+            @include breakpoint(large up) {
+              display: none;
+            }
           }
 
           &.menutext {
