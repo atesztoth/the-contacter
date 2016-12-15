@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'bower',
+    baseUrl: '/bower',
     // shim: {
     //     'bootstrap': {'deps': ['jquery']} // jquery not supports amd (Oh shiet, from up to 1.7.* it does)
     // },
@@ -10,7 +10,7 @@ requirejs.config({
     },
     shim: {
         'foundation': { // gotcha!
-            deps: ['jquery'],
+            deps: ['jquery', 'whatInput'],
             exports: 'foundation'
         }
     }
@@ -24,4 +24,16 @@ requirejs(['jquery', 'whatInput', 'foundation'], function ($) {
     // $ is atteched to JQUERY! Evertyhing is ready to roll!
     // console.log($);
     console.log('If you see no error, that means everything is loaded correctly with its dependencies. Lets rock!');
+
+    // First things first:
+    $(function () {
+        $('.hidden-if-no-js').show();
+        $('.hidden-if-js').hide();
+
+        $('.the-contacter-selector').each(function() {
+            var parent = $(this).parent();
+
+            $(this).remove();
+        });
+    });
 });

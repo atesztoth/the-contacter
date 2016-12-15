@@ -14,9 +14,13 @@ body {
     @include font-size(30px);
     border-bottom: 1px solid $titleBorderColor;
   }
-  
+
   .text-italic {
     font-style: italic;
+  }
+
+  .hidden-if-no-js {
+    display: none; // Js is gonna remove this.
   }
 
   #content {

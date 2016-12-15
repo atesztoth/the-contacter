@@ -1,0 +1,26 @@
+ul.tc-list {
+  display: block;
+  list-style-type: none;
+
+  li {
+    div.tc-list-element {
+      font-size: 0;
+
+      ._divs {
+        display: inline-block;
+      }
+
+      div.selector {
+        @extend ._divs;
+        width: 20%;
+        @include tcFontSizes;
+      }
+
+      div.tc-text {
+        @extend ._divs;
+        width: 80%;
+        @include tcFontSizes;
+      }
+    }
+  }
+}

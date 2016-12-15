@@ -57,26 +57,49 @@
             {% endif %}
 
             <label>
-                Telefonszámok (típus-telefonszám#típus-telefonszám...)
-                <textarea placeholder="magán-+36301234567#céges-06201234567"
+                Telefonszámok <span class="hidden-if-js">(típus-telefonszám#típus-telefonszám...)</span>
+                <textarea class="the-contacter-selector" placeholder="magán-+36301234567#céges-06201234567"
                           name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
+                {# this is gonna be used when js enabled #}
+                <div class="hidden-if-no-js the-contacter-selector-element">
+                    <ul class="tc-list">
+                        <li>
+                            <div class="tc-list-element">
+                                <div class="tc-selector">
+                                    {# type selector part #}
+                                    <select name="tnums" id="type">
+                                        <option value="magán">magán</option>
+                                        <option value="céges">céges</option>
+                                        <option value="otthoni">otthoni</option>
+                                        <option value="egyéb">egyéb</option>
+                                    </select>
+                                </div>
+                                <div class="tc-text">
+                                    Try this shit
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </label>
 
             <label>
-                Email címek (típus-email#típus-email...)
-                <textarea placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
+                Email címek <span class="hidden-if-js">(típus-email#típus-email...)</span>
+                <textarea class="the-contacter-selector"
+                          placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
                           name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
             </label>
 
             <label>
-                Helyek (típus-cím#típus-cím...)
-                <textarea placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
+                Helyek <span class="hidden-if-js">(típus-cím#típus-cím...)</span>
+                <textarea class="the-contacter-selector"
+                          placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
                           name="addresses">{% if editMode %}{% if contact.addresses %}{{ contact.addresses }}{% endif %}{% else %}{{ old('addresses') }}{% endif %}</textarea>
             </label>
 
             <label>
                 Megjegyzés csatolása
-                <textarea placeholder="Megjegyzés..."
+                <textarea class="the-contacter-selector" placeholder="Megjegyzés..."
                           name="comment">{% if editMode %}{% if contact.comment %}{{ contact.comment }}{% endif %}{% else %}{{ old('comment') }}{% endif %}</textarea>
             </label>
 

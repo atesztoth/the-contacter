@@ -11,3 +11,10 @@ $menuShadowColor: #ccc;
 $titleBorderColor: #00161c;
 
 $iconColWidth: 20px;
+
+$fontSizeSmIncrease: 3px;
+$fontSizeLgIncrease: 0px;
+
+$fontSize: 12px;
+$fontSizeSm: $fontSize + $fontSizeSmIncrease;
+$fontSizeLg: $fontSizeSm + $fontSizeLgIncrease;

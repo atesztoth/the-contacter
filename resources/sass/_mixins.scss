@@ -55,3 +55,15 @@
     vertical-align: middle;
   }
 }
+
+@mixin tcFontSizes() {
+  @include font-size($fontSize);
+
+  @include breakpoint(medium up) {
+    @include font-size($fontSizeSm);
+  }
+
+  @include breakpoint(large up) {
+    @include font-size($fontSizeLg);
+  }
+}
