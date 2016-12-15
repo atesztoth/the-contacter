@@ -17,6 +17,7 @@ class ContactController {
 
     * list(request, response) {
         const contacts = yield Contact.query()
+            .where('created_by_id', request.currentUser.id)
             .with('tnums', 'emails')
             .orderBy('created_at', 'desc')
             .orderBy('firstname', 'asc')
