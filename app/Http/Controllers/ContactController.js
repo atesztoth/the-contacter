@@ -29,7 +29,7 @@ class ContactController {
     }
 
     * add(request, response) {
-        const CGroups = yield CGroup.all()
+        const CGroups = yield CGroup.query().where('user_id', request.currentUser.id).fetch()
 
         yield response.sendView('contact/add', {
             cgroups: CGroups.toJSON()
@@ -54,6 +54,7 @@ class ContactController {
     }
 
     * saveAction(request, response) {
+        let ajaxMode = false
         const contactData = request.all()
         // TODO: Rájönni, hogy mégis milyen megfontolásból nem bírja bepostolni
         // multipart/form-data esetén az azonos néven menő fieldeket. Elég rohadtul idegesítő.
@@ -68,6 +69,11 @@ class ContactController {
             surname: 'required'
         }, myMessages)
 
+        // look for AJAX call:
+        if (Object.prototype.hasOwnProperty.call(contactData, 'ajaxsign')) { // true
+            ajaxMode = true
+        }
+
         if (validation.fails()) {
             yield request
                 .withAll()
@@ -76,8 +82,19 @@ class ContactController {
                 })
                 .flash()
 
-            yield response.route('addContact') // TODO: check
-            return;
+            if (ajaxMode) {
+                // then we should give a json answer:
+                let answerObject = {
+                    result: 0,
+                    errors: validation.messages()
+                }
+
+                response.json(answerObject)
+                return
+            }
+
+            yield response.route('addContact')
+            return
         }
 
         // Init contact
@@ -106,7 +123,19 @@ class ContactController {
                 yield Database.table('tnums').where('contact_id', contact.id).del()
                 yield Database.table('addresses').where('contact_id', contact.id).del()
             } else {
-                response.notFound('A keresett kontakt nem található.')
+                let errorMsg = 'A keresett kontakt nem található.';
+
+                if (ajaxMode) {
+                    // then we should give a json answer:
+                    let answerObject = {
+                        result: 0,
+                        errors: [{message: errorMsg}]
+                    }
+
+                    response.json(answerObject)
+                }
+
+                response.notFound(errorMsg)
                 return
             }
 
@@ -182,6 +211,16 @@ class ContactController {
                     })
                     .flash()
 
+                if (ajaxMode) {
+                    // then we should give a json answer:
+                    let answerObject = {
+                        result: 0,
+                        errors: validation.messages()
+                    }
+
+                    response.json(answerObject)
+                }
+
                 response.route('addContact')
                 return
             }
@@ -204,20 +243,21 @@ class ContactController {
                 }
             }
 
-            // console.log(Helpers.storagePath('p_images'), fileName)
-            // The following function is just too fancy-ass to give any useable
-            // error messages, so I went as far as using a built-in nodejs funciton,
-            // that could give me some useable error messages.
-            // I got fixed the (EXDEV) error in like 3 minutes with a bit of googleing,
-            // but spent 2 hours on NOTHING because of this b*tchass function underneath.
-            // Hellyeah... I've put far more time in this than I should have had.
             yield profileImage.move(Helpers.storagePath('p_images'), fileName)
-
-            // Gonna do that:
-            // fs.renameSync(requestFile.path, path.join(Helpers.storagePath('p_images'), fileName))
 
             if (!profileImage.moved()) {
                 console.log('The image could not be moved!!')
+
+                if (ajaxMode) {
+                    // then we should give a json answer:
+                    let answerObject = {
+                        result: 0,
+                        errors: profileImage.errors()
+                    }
+
+                    response.json(answerObject)
+                }
+
                 response.badRequest({
                     error: profileImage.errors()
                 })
@@ -241,19 +281,21 @@ class ContactController {
             yield contact.image().save(image)
         }
 
+
+
         // Ooh, and the contact groups:
         // Doing it the hard way again. Breaking every relationships, then reassociating them again.
         if (typeof contactData.cg !== 'undefined' && contactData.cg !== null) {
             const cgIDS = contactData.cg
             const cgroups = yield CGroup.query().where('user_id', request.currentUser.id).whereIn('id', cgIDS).ids()
 
-            // yield response.json(cgroups)
+            yield response.json(cgIDS)
 
             yield contact.cgroups().sync(cgroups)
         }
 
         // Here comes the optional part
-        if (typeof contactData.emails !== 'undefined') {
+        if (typeof contactData.emails !== 'undefined' && contactData.emails.trim().length > 0) {
             if (contactData.emails.indexOf('#') !== -1) {
                 // Then we have to split this thing apart
                 const emails = contactData.emails.trim().split('#');
@@ -279,10 +321,10 @@ class ContactController {
         } else {
             // I am doing these else statements, so we can delete content here
             // from the editing page.
-            comment.emails = null
+            contact.emails = null
         }
 
-        if (typeof contactData.tnums !== 'undefined') {
+        if (typeof contactData.tnums !== 'undefined' && contactData.tnums.trim().length > 0) {
             if (contactData.tnums.indexOf('#') !== -1) {
                 // Then we have to split this thing apart
                 const tnums = contactData.tnums.trim().split('#');
@@ -305,10 +347,10 @@ class ContactController {
                 yield contact.tnums().save(tnum)
             }
         } else {
-            comment.tnums = null
+            contact.tnums = null
         }
 
-        if (typeof contactData.addresses !== 'undefined') {
+        if (typeof contactData.addresses !== 'undefined' && contactData.addresses.trim().length > 0) {
             if (contactData.addresses.indexOf('#') !== -1) {
                 // Then we have to split this thing apart
                 const addresses = contactData.addresses.trim().split('#');
@@ -331,7 +373,17 @@ class ContactController {
                 yield contact.addresses().save(address)
             }
         } else {
-            comment.addresses = null
+            contact.addresses = null
+        }
+
+        if (ajaxMode) {
+            // then we should give a json answer:
+            let answerObject = {
+                result: 1
+            }
+
+            response.json(answerObject)
+            return
         }
 
         yield request.with({

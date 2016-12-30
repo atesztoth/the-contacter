@@ -3,28 +3,35 @@
 {% block pagetitle %}The Contacter - Registration{% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="/assets/css/registration.css">
+    <link rel="stylesheet" href="/assets/css/registration.css">
 {% endblock %}
 
 {% block content %}
-  <div id="registration">
-    {% include 'partials/error-list.njk' %}
+    <div id="registration">
+        {% include 'partials/error-list.njk' %}
+        <div id="loading-indicator">
+            <img src="/images/loading.svg">
+        </div>
 
-    <form action="{{ 'regpage' | route }}" method="post">
-      {{ csrfField }}
-      <label>E-mail címed
-        <input type="text" placeholder="email@cím.hu" name="email" value="{{ old('email') }}">
-      </label>
+        <form action="{{ 'regpage' | route }}" method="post" id="regform">
+            {{ csrfField }}
+            <label>E-mail címed
+                <input type="text" placeholder="email@cím.hu" name="email" value="{{ old('email') }}">
+            </label>
 
-      <label>Jelszó
-        <input type="password" placeholder="Jelszó" name="password">
-      </label>
+            <label>Jelszó
+                <input type="password" placeholder="Jelszó" name="password">
+            </label>
 
-      <label>Jelszó megerősítése
-        <input type="password" placeholder="Jelszó mégegyszer" name="password2">
-      </label>
+            <label>Jelszó megerősítése
+                <input type="password" placeholder="Jelszó mégegyszer" name="password2">
+            </label>
 
-      <input type="submit" class="button" value="Regisztrálok!">
-    </form>
-  </div>
+            <input type="submit" class="button" value="Regisztrálok!">
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script data-main="/assets/js/reg.js" src="/bower/requirejs/require.js"></script>
 {% endblock %}

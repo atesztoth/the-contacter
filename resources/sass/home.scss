@@ -7,6 +7,11 @@
     .inside-wrapper {
       .nav-menu {
         ul.custom-menu {
+
+          .has-tip {
+            border-bottom: 0;
+          }
+
           > li {
             padding-right: 30px;
 

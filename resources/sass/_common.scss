@@ -149,4 +149,15 @@ body {
       }
     }
   }
+
+  .tooltip {
+    z-index: 9999;
+  }
+
+  #loading-indicator {
+    display: none;
+    margin: 0 auto;
+    max-width: 20%;
+    max-height: 20%;
+  }
 }

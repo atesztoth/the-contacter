@@ -11,8 +11,11 @@
     <h1>{% if editMode %}Kontakt szerkesztése{% else %}Új kontakt hozzáadása{% endif %}</h1>
 
     <div id="contact-add">
-        <p><i>Csak kliensoldali technológiát szabad használni ebben a szakaszban&hellip;</i></p>
-        <form method="post" action="{{ 'saveContactAction' | route() }}"> <!-- enctype="multipart/form-data" -->
+        <div id="loading-indicator">
+            <img src="/images/loading.svg">
+        </div>
+
+        <form method="post" action="{{ 'saveContactAction' | route() }}" id="contactform"> <!-- enctype="multipart/form-data" -->
             {{ csrfField }}
 
             {% if editMode %}<input type="hidden" name="editFlag" value="{{ contact.id }}">{% endif %}
@@ -61,26 +64,26 @@
                 <textarea class="the-contacter-selector" placeholder="magán-+36301234567#céges-06201234567"
                           name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
                 {# this is gonna be used when js enabled #}
-                <div class="hidden-if-no-js the-contacter-selector-element">
-                    <ul class="tc-list">
-                        <li>
-                            <div class="tc-list-element">
-                                <div class="tc-selector">
+                {#<div class="hidden-if-no-js the-contacter-selector-element">#}
+                    {#<ul class="tc-list">#}
+                        {#<li>#}
+                            {#<div class="tc-list-element">#}
+                                {#<div class="tc-selector">#}
                                     {# type selector part #}
-                                    <select name="tnums" id="type">
-                                        <option value="magán">magán</option>
-                                        <option value="céges">céges</option>
-                                        <option value="otthoni">otthoni</option>
-                                        <option value="egyéb">egyéb</option>
-                                    </select>
-                                </div>
-                                <div class="tc-text">
-                                    Try this shit
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                                    {#<select name="tnums" id="type">#}
+                                        {#<option value="magán">magán</option>#}
+                                        {#<option value="céges">céges</option>#}
+                                        {#<option value="otthoni">otthoni</option>#}
+                                        {#<option value="egyéb">egyéb</option>#}
+                                    {#</select>#}
+                                {#</div>#}
+                                {#<div class="tc-text">#}
+                                    {#Try this shit#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</div>#}
             </label>
 
             <label>
@@ -106,4 +109,8 @@
             <button class="button" type="submit">Mentés</button>
         </form>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script data-main="/assets/js/add.js" src="/bower/requirejs/require.js"></script>
 {% endblock %}
