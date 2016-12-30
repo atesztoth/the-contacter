@@ -1,0 +1,30 @@
+@import '_common';
+
+ul.the-contacter-selector {
+  // I'll use a very strict dom build for this. Sorry if this seems kinda too "strict"... Maybe it is, but it is only gonna be used in
+  // this project.
+
+  list-style: none;
+
+  > li {
+    &.example {
+      display: none;
+    }
+
+    > div.tc-list-element {
+      font-size: 0; // Avoiding bugs caused by inline block setup.
+      > div.tc-selector,
+      > div.tc-text {
+        display: inline-block;
+        @include tcFontSizes();
+      }
+
+      > div.tc-selector {
+        > select {
+
+        }
+      }
+    }
+  }
+
+}

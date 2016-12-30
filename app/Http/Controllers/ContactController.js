@@ -161,10 +161,10 @@ class ContactController {
         // Handling the image
         let weHaveAnImage = false;
         const image = new Image()
-        // const requestFile = request.file('profileImage').toJSON()
-        const requestFile = function () {
-            let size = 0
-        }
+        const requestFile = request.file('profileImage').toJSON()
+        // const requestFile = function () {
+        //     let size = 0
+        // }
 
         if (requestFile.size > 0) {
             // Existing image? Ok, it is only possible if it is not a new contact object,
@@ -280,8 +280,6 @@ class ContactController {
             // console.log(image)
             yield contact.image().save(image)
         }
-
-
 
         // Ooh, and the contact groups:
         // Doing it the hard way again. Breaking every relationships, then reassociating them again.

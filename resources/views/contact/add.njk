@@ -15,7 +15,8 @@
             <img src="/images/loading.svg">
         </div>
 
-        <form method="post" action="{{ 'saveContactAction' | route() }}" id="contactform"> <!-- enctype="multipart/form-data" -->
+        <form method="post" action="{{ 'saveContactAction' | route() }}" id="contactform" name="addform">
+            <!-- enctype="multipart/form-data" -->
             {{ csrfField }}
 
             {% if editMode %}<input type="hidden" name="editFlag" value="{{ contact.id }}">{% endif %}
@@ -35,7 +36,7 @@
                        value="{% if editMode %}{% if contact.nickname %}{{ contact.nickname }}{% endif %}{% else %}{{ old('nickname') }}{% endif %}">
             </label>
 
-            <fieldset>
+            <fieldset class="hidden-if-no-js">
                 <legend>Kép feltöltése</legend>
 
                 {% if editMode and contact.image %}
@@ -60,49 +61,90 @@
             {% endif %}
 
             <label>
-                Telefonszámok <span class="hidden-if-js">(típus-telefonszám#típus-telefonszám...)</span>
-                <textarea class="the-contacter-selector" placeholder="magán-+36301234567#céges-06201234567"
+                Telefonszámok <span class="plus-button hidden-if-no-js"><i class="fa fa-plus"
+                                                                           aria-hidden="true"></i></span> <span
+                        class="remove-if-js">(típus-telefonszám#típus-telefonszám...)</span>
+                <textarea class="remove-if-js" placeholder="magán-+36301234567#céges-06201234567"
                           name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
                 {# this is gonna be used when js enabled #}
-                {#<div class="hidden-if-no-js the-contacter-selector-element">#}
-                    {#<ul class="tc-list">#}
-                        {#<li>#}
-                            {#<div class="tc-list-element">#}
-                                {#<div class="tc-selector">#}
-                                    {# type selector part #}
-                                    {#<select name="tnums" id="type">#}
-                                        {#<option value="magán">magán</option>#}
-                                        {#<option value="céges">céges</option>#}
-                                        {#<option value="otthoni">otthoni</option>#}
-                                        {#<option value="egyéb">egyéb</option>#}
-                                    {#</select>#}
-                                {#</div>#}
-                                {#<div class="tc-text">#}
-                                    {#Try this shit#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</div>#}
+                <div class="hidden-if-no-js">
+                    <ul class="the-contacter-selector" data-postname="tnums">
+                        <li class="example"> <!-- adding example class also avoids this from being saved! -->
+                            <div class="tc-list-element">
+                                <div class="tc-selector">
+                                    <select class="tc-selector-type">
+                                        <option value="magán">magán</option>
+                                        <option value="céges">céges</option>
+                                        <option value="otthoni">otthoni</option>
+                                        <option value="egyéb">egyéb</option>
+                                    </select>
+                                </div>
+                                <div class="tc-text">
+                                    <input type="text" placeholder="+36707011006">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </label>
 
             <label>
-                Email címek <span class="hidden-if-js">(típus-email#típus-email...)</span>
-                <textarea class="the-contacter-selector"
+                Email címek <span class="plus-button hidden-if-no-js"><i class="fa fa-plus"
+                                                                         aria-hidden="true"></i></span><span
+                        class="remove-if-js">(típus-email#típus-email...)</span>
+                <textarea class="remove-if-js"
                           placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
                           name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
+                <div class="hidden-if-no-js">
+                    <ul class="the-contacter-selector" data-postname="emails">
+                        <li class="example"> <!-- adding example class also avoids this from being saved! -->
+                            <div class="tc-list-element">
+                                <div class="tc-selector">
+                                    <select class="tc-selector-type">
+                                        <option value="magán">magán</option>
+                                        <option value="céges">céges</option>
+                                        <option value="egyéb">egyéb</option>
+                                    </select>
+                                </div>
+                                <div class="tc-text">
+                                    <input type="text" placeholder="teszt@mail.hu">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </label>
 
             <label>
-                Helyek <span class="hidden-if-js">(típus-cím#típus-cím...)</span>
-                <textarea class="the-contacter-selector"
+                Helyek <span class="plus-button hidden-if-no-js"><i class="fa fa-plus"
+                                                                    aria-hidden="true"></i></span><span
+                        class="remove-if-js">(típus-cím#típus-cím...)</span>
+                <textarea class="remove-if-js"
                           placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
                           name="addresses">{% if editMode %}{% if contact.addresses %}{{ contact.addresses }}{% endif %}{% else %}{{ old('addresses') }}{% endif %}</textarea>
+                <div class="hidden-if-no-js">
+                    <ul class="the-contacter-selector" data-postname="addresses">
+                        <li class="example"> <!-- adding example class also avoids this from being saved! -->
+                            <div class="tc-list-element">
+                                <div class="tc-selector">
+                                    <select class="tc-selector-type">
+                                        <option value="otthon">otthon</option>
+                                        <option value="munkahely">munkahely</option>
+                                        <option value="egyéb">egyéb</option>
+                                    </select>
+                                </div>
+                                <div class="tc-text">
+                                    <input type="text" placeholder="1111 Budapest, ...">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </label>
 
             <label>
                 Megjegyzés csatolása
-                <textarea class="the-contacter-selector" placeholder="Megjegyzés..."
+                <textarea class="" placeholder="Megjegyzés..."
                           name="comment">{% if editMode %}{% if contact.comment %}{{ contact.comment }}{% endif %}{% else %}{{ old('comment') }}{% endif %}</textarea>
             </label>
 
@@ -112,5 +154,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script data-main="/assets/js/add.js" src="/bower/requirejs/require.js"></script>
+    <script data-main="/assets/js/contactHandler.js" src="/bower/requirejs/require.js"></script>
 {% endblock %}

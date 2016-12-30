@@ -44,17 +44,14 @@ requirejs.config({
 requirejs(['jquery', 'foundation'], function ($) {
     //  console.log('If you see no error, that means everything is loaded correctly with its dependencies. Lets rock!');
 
-    // // First things first:
-    // $(function () {
-    //     $('.hidden-if-no-js').show();
-    //     $('.hidden-if-js').hide();
-    //
-    //     $('.the-contacter-selector').each(function () {
-    //         var parent = $(this).parent();
-    //
-    //         $(this).remove();
-    //     });
-    // });
+    // First things first:
+    $(function () {
+        $('.hidden-if-no-js').show();
+        $('.hidden-if-js').hide();
+
+        // Stronger rules:
+        $('.remove-if-js').remove();
+    });
 });
 
 requirejs(['jquery', 'fTooltip'], function ($) {
@@ -67,10 +64,26 @@ requirejs(['jquery', 'fTooltip'], function ($) {
 
 function getErrorList(errors) {
     let resp = '<ul class="error-list alert callout"><li class="oops">Woops...</li>';
+    console.log('errors: ');
+    console.log(errors);
 
     for (let i = 0; i < errors.length; ++i) {
-        resp += '<li>' + errors[i].message + '</li>';
+        let e = errors[i];
+        if (typeof e.message === 'object') {
+            let emsg = '';
+
+            for (let x in e.message) {
+                if (e.message.hasOwnProperty(x)) {
+                    emsg += x + ': ' + e.message[x] + '<br>';
+                }
+            }
+
+            resp += 'mező: ' + e.field + ' hiba: ' + emsg + '<br>';
+        } else {
+            resp += 'mező: ' + e.field + ' hiba: ' + e.message + '<br>';
+        }
     }
+
     resp += '</ul>';
 
     return resp;

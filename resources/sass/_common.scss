@@ -160,4 +160,11 @@ body {
     max-width: 20%;
     max-height: 20%;
   }
+
+  .plus-button {
+    display: inline;
+    cursor: pointer;
+    vertical-align: middle;
+    @include font-size(20px);
+  }
 }
