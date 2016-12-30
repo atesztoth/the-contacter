@@ -21,8 +21,8 @@ class HomeController {
 
     * registration(request, response) {
         let ajaxMode = false
-        const user = new User();
-        const userData = request.all();
+        const user = new User()
+        const userData = request.all()
         const myMessages = {
             email: 'Kérem e-mail címet adjon meg!',
             required: 'A mező kitöltése kötelező.',
@@ -37,6 +37,7 @@ class HomeController {
             password: 'required|min:6',
             password2: 'required|min:6|same:password'
         }
+
         const validation = yield Validator.validateAll(userData, rules, myMessages)
 
         // look for AJAX call:
@@ -47,7 +48,7 @@ class HomeController {
         if (request.method() === 'POST') {
             if (validation.fails()) {
 
-                if(ajaxMode) {
+                if (ajaxMode) {
                     // then we should give a json answer:
                     let answerObject = {
                         result: 0,
@@ -64,15 +65,15 @@ class HomeController {
                     })
                     .flash()
 
-                yield response.route('regpage')
-
+                response.route('regpage')
+                return
             } else {
                 user.email = userData.email;
                 user.password = yield Hash.make(userData.password)
 
                 yield user.save()
 
-                if(ajaxMode) {
+                if (ajaxMode) {
                     // then we should give a json answer:
                     let answerObject = {
                         result: 1,
@@ -80,10 +81,11 @@ class HomeController {
                     }
 
                     response.json(answerObject)
+                    return
                 }
 
                 yield request.with({successMsg: 'Sikeres regisztráció! Mostmár bejelentkezhet az oldalra.'}).flash()
-                yield response.redirect('/')
+                response.redirect('/')
                 return
             }
         }
