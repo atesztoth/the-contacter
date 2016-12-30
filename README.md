@@ -193,7 +193,13 @@ VCS: **git**
   * _package.json_
   * _server.js_
 
-### 4.	Felhasználói dokumentáció
+### 4.	Tesztek
+
+#### 4.1 Selinium IDE-s tesztek
+tests mappában.
+
+
+### 5.	Felhasználói dokumentáció
 
 **Futtatáshoz szükséges operációs rendszer:** Tetszőleges operációs rendszer
 
@@ -215,7 +221,7 @@ VCS: **git**
 10. Megtekintés oldalon található a szerkesztés gomb
 11. Szerkesztés oldal: megegyezik az új kontakt oldallal, viszont előre ki van töltve.
 
-### 5.	Irodalomjegyzék:
+### 6.	Irodalomjegyzék:
 
 http://webprogramozas.inf.elte.hu/alkfejl.php
 
