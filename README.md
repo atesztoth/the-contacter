@@ -196,8 +196,8 @@ VCS: **git**
 ### 4.	Tesztek
 
 #### 4.1 Selinium IDE-s tesztek
-tests mappában.
-
+A Selenium IDE-t könnyedén telepíthetjük a következő linket használva: https://addons.mozilla.org/hu/firefox/addon/selenium-ide/.
+Ezen link segítségével egy firefox pluginként települ fel a program és ezentúl használhatjuk bármely projektünkhöz.
 
 ### 5.	Felhasználói dokumentáció
 
