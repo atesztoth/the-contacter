@@ -26,7 +26,12 @@
         > span {
 
           @include font-shrikhand();
-          font-size: 70px;
+
+          font-size: 50px;
+
+          @include breakpoint(medium up) {
+            font-size: 70px;
+          }
           text-align: left;
           text-shadow: 4px 4px #b9cae5;
         }
