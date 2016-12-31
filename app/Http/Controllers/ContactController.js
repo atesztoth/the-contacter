@@ -56,6 +56,7 @@ class ContactController {
     * saveAction(request, response) {
         let ajaxMode = false
         const contactData = request.all()
+
         // TODO: Rájönni, hogy mégis milyen megfontolásból nem bírja bepostolni
         // multipart/form-data esetén az azonos néven menő fieldeket. Elég rohadtul idegesítő.
         // KÉPFELTÖLTÉS IDEIGLENESEN OFF.
@@ -161,10 +162,16 @@ class ContactController {
         // Handling the image
         let weHaveAnImage = false;
         const image = new Image()
-        const requestFile = request.file('profileImage').toJSON()
-        // const requestFile = function () {
-        //     let size = 0
-        // }
+        let requestFile = null
+
+        if (request.file('profileImage') === null) {
+            requestFile = function () {
+                let size = 0
+            }
+        } else {
+            requestFile = request.file('profileImage').toJSON()
+        }
+
 
         if (requestFile.size > 0) {
             // Existing image? Ok, it is only possible if it is not a new contact object,
@@ -182,7 +189,7 @@ class ContactController {
                     try {
                         fs.accessSync(imagePath, fs.F_OK)
                         fs.unlinkSync(imagePath)
-                        yield Database.table('images').where('id', oldImage.id).delete()
+                        yield Database.table('images').where('id', oldImage.id).del()
                     } catch (e) {
                         console.log('I could not delete an old image!')
                         response.badRequest({
@@ -287,7 +294,7 @@ class ContactController {
             const cgIDS = contactData.cg
             const cgroups = yield CGroup.query().where('user_id', request.currentUser.id).whereIn('id', cgIDS).ids()
 
-            yield response.json(cgIDS)
+            // response.json(cgIDS)
 
             yield contact.cgroups().sync(cgroups)
         }
@@ -387,7 +394,7 @@ class ContactController {
         yield request.with({
             successMsg: 'Sikeres mentés!'
         }).flash()
-        yield response.route('contactList')
+        response.route('contactList')
     }
 
     * edit(request, response) {
@@ -437,6 +444,53 @@ class ContactController {
         const imageName = request.param('imageName')
 
         response.download(Helpers.storagePath(path.join('p_images', imageName)))
+    }
+
+    * removeAction(request, response) {
+        const contactId = request.param('id')
+        let contact = yield Contact.find(contactId)
+
+        if (contact) {
+            // Redirecting if he is doing some monkey business:
+            if (contact.created_by_id !== request.currentUser.id) {
+                response.unauthorized('Hozzáférés megtagadva.')
+                return
+            }
+
+            // Getting things removed:
+            yield contact.related('cgroups', 'emails', 'addresses', 'image', 'tnums').load() // Lazy Eager load
+            yield Database.table('cgroups').where('contact_id', contact.id).del()
+            yield Database.table('emails').where('contact_id', contact.id).del()
+            yield Database.table('tnums').where('contact_id', contact.id).del()
+            yield Database.table('addresses').where('contact_id', contact.id).del()
+
+            let oldImage = contact.toJSON().image
+
+            console.log(oldImage)
+
+            // Just to make it absolutely sure:
+            if (oldImage !== null && oldImage.id > 0) {
+                let imagePath = path.join(Helpers.storagePath('p_images'), oldImage.url)
+                console.log(imagePath)
+                try {
+                    fs.accessSync(imagePath, fs.F_OK)
+                    fs.unlinkSync(imagePath)
+                    yield Database.table('images').where('id', oldImage.id).del()
+                } catch (e) {
+                    console.log('I could not delete an old image!')
+                    response.badRequest({
+                        error: e
+                    })
+                }
+            }
+        }
+
+        yield contact.delete()
+
+        yield request.with({
+            successMsg: 'Sikeres törlés!'
+        }).flash()
+        response.route('contactList')
     }
 
     mySerializer(object, fieldNames) {

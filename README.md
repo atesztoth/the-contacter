@@ -195,9 +195,17 @@ VCS: **git**
 
 ### 4.	Tesztek
 
-#### 4.1 Selinium IDE-s tesztek
+#### 4.1 Selinium IDE ismertető
 A Selenium IDE-t könnyedén telepíthetjük a következő linket használva: https://addons.mozilla.org/hu/firefox/addon/selenium-ide/.
 Ezen link segítségével egy firefox pluginként települ fel a program és ezentúl használhatjuk bármely projektünkhöz.
+
+#### 4.2 Selenium IDE tesztek:
+A tests könyvtárban találhatóak.
+Tesztelve vannak a következő esetek, és egymásra épülnek:
+- Új kontakt létrehozása
+- Előbb létrehozott kontakt módosítása
+- Új kontaktcsoport létrehozása
+- Előbb létrehozott kontaktcsoport törlése
 
 ### 5.	Felhasználói dokumentáció
 
@@ -228,3 +236,7 @@ http://webprogramozas.inf.elte.hu/alkfejl.php
 http://ade.web.elte.hu/wabp/lecke2_lap1.html
 
 http://webprogramozas.inf.elte.hu/alkfejl/A_dokumentacio_felepitese.pdf
+
+Megjegyzés: Engedélyezett JavaScript mellett működik a képfeltöltés is,
+viszont figyelni kell arra, hogy a "temp" mappa, és az alkalmazás  közös
+partíción legyenek. (Legalább is Windows alatt biztosan.)

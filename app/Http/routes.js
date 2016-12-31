@@ -18,7 +18,7 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.welcome').as('mainpage') // Renders the view directly
-Route.route('/registration', ['GET', 'POST'] , 'HomeController.registration').as('regpage')
+Route.route('/registration', ['GET', 'POST'], 'HomeController.registration').as('regpage')
 Route.get('/login', 'HomeController.login').as('login')
 Route.post('/loginaction', 'HomeController.loginAction').as('loginAction')
 Route.get('/logout', 'HomeController.logout').as('logout')
@@ -30,6 +30,7 @@ Route.get('/contacts', 'ContactController.list').as('contactList').middleware('a
 // Adding:
 Route.get('/contact/new-contact', 'ContactController.add').as('addContact').middleware('auth')
 Route.post('/contact/save-contact', 'ContactController.saveAction').as('saveContactAction').middleware('auth')
+Route.get('/contact/remove-contact/:id', 'ContactController.removeAction').as('removeContactAction').middleware('auth')
 
 // Editing:
 Route.get('/contact/edit/:id', 'ContactController.edit').as('editContact').middleware('auth')

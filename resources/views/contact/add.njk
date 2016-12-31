@@ -66,8 +66,10 @@
                         class="remove-if-js">(típus-telefonszám#típus-telefonszám...)</span>
                 <textarea class="remove-if-js" placeholder="magán-+36301234567#céges-06201234567"
                           name="tnums">{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}</textarea>
+
                 {# this is gonna be used when js enabled #}
                 <div class="hidden-if-no-js">
+                    <input type="hidden" class="jshelper" value="{% if editMode %}{% if contact.tnums %}{{ contact.tnums }}{% endif %}{% else %}{{ old('tnums') }}{% endif %}">
                     <ul class="the-contacter-selector" data-postname="tnums">
                         <li class="example"> <!-- adding example class also avoids this from being saved! -->
                             <div class="tc-list-element">
@@ -95,7 +97,10 @@
                 <textarea class="remove-if-js"
                           placeholder="magán-pelda@example.com#céges-peldaceges@example.com"
                           name="emails">{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}</textarea>
+
+
                 <div class="hidden-if-no-js">
+                    <input type="hidden" class="jshelper" value="{% if editMode %}{% if contact.emails %}{{ contact.emails }}{% endif %}{% else %}{{ old('emails') }}{% endif %}">
                     <ul class="the-contacter-selector" data-postname="emails">
                         <li class="example"> <!-- adding example class also avoids this from being saved! -->
                             <div class="tc-list-element">
@@ -122,7 +127,10 @@
                 <textarea class="remove-if-js"
                           placeholder="otthon-4400 Nyíregyháza Példa utca 6#munkahely-1151 Budapest Példa Utca 113 / 2"
                           name="addresses">{% if editMode %}{% if contact.addresses %}{{ contact.addresses }}{% endif %}{% else %}{{ old('addresses') }}{% endif %}</textarea>
+
+
                 <div class="hidden-if-no-js">
+                    <input type="hidden" class="jshelper" value="{% if editMode %}{% if contact.addresses %}{{ contact.addresses }}{% endif %}{% else %}{{ old('addresses') }}{% endif %}">
                     <ul class="the-contacter-selector" data-postname="addresses">
                         <li class="example"> <!-- adding example class also avoids this from being saved! -->
                             <div class="tc-list-element">
@@ -149,6 +157,9 @@
             </label>
 
             <button class="button" type="submit">Mentés</button>
+            {% if editMode %}
+                <a href="{{ 'removeContactAction'| route({id:contact.id}) }}" class="button alert">Törlés</a>
+            {% endif %}
         </form>
     </div>
 {% endblock %}

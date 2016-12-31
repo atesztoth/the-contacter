@@ -16,6 +16,7 @@ ul.the-contacter-selector {
       > div.tc-selector,
       > div.tc-text {
         display: inline-block;
+        vertical-align: top;
         @include tcFontSizes();
       }
 

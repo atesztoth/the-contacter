@@ -17,6 +17,39 @@ requirejs(['./requirejs_common'], function (common) {
                 }
             });
 
+            // Looking for existing data:
+            $('.the-contacter-selector').each(function () {
+                let data = $(this).siblings('.jshelper').eq(0).val().trim();
+                let tcSelector = $(this);
+
+                if (data.length > 0) {
+                    let pieces = data.split('#');
+
+                    // for-in is for GETTING OBJECT PROPERTY NAMES!
+                    // just use vanilla for here.
+
+                    for (let i = 0; i < pieces.length; ++i) { // mixin es2015 and goold ol' js. but its ok.
+                        // This is the first project since a long time that I can use some new stuff in.
+                        let parts = pieces[i].split('-');
+
+                        // Adding shiet:
+                        let exampleLi = $($('li.example', tcSelector)[0].outerHTML);
+                        exampleLi.removeClass('example');
+
+                        $('.tc-selector-type option', exampleLi).each(function () {
+                            if ($(this).val() === parts[0]) {
+                                // If we can find it then we are happy, else ... whoops, no one cares.
+                                $(this).attr('selected', 'selected');
+                            }
+                        });
+
+                        $('.tc-text input:eq(0)', exampleLi).val(parts[1]);
+
+                        $(tcSelector).append(exampleLi);
+                    }
+                }
+            });
+
             // Make this work with ajax!
             $('#contactform').on('submit', function (e) {
                 e.preventDefault();
