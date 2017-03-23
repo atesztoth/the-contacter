@@ -28,5 +28,9 @@
     "foundation-sites": "~6.3.0",
     "font-awesome": "^4.7.0",
     "what-input": "^4.1.1"
+  },
+  "interactive": false,
+  "resolutions": {
+    "what-input": "4.1.1"
   }
 }

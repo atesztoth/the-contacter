@@ -36,3 +36,6 @@ npm-debug*
 
 # ignore every .css, they are going to be translated from less
 public/assets/css/**/*.css
+
+# IDEA files
+*/**/*.iml
